@@ -1,0 +1,47 @@
+@import url(./reset.css);
+body {
+  font-family: -apple-system, sans-serif;
+  box-sizing: border-box;
+  border: 1px solid red;
+  height: 100vh; }
+  body h1 {
+    font-size: 0; }
+  body .wrapper {
+    width: 90%;
+    min-width: 800px;
+    margin: 0 auto;
+    border: 1px solid blue;
+    display: flex;
+    justify-content: space-between; }
+  body .product {
+    border: 1px solid yellowgreen;
+    padding: 1rem; }
+    body .product-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-column-gap: 1rem;
+      grid-row-gap: 1rem;
+      text-align: center; }
+    body .product-item {
+      padding: 0.5rem;
+      position: relative;
+      background-color: #eee;
+      border: 1px solid #bbb;
+      border-radius: 4px;
+      width: 5rem; }
+      body .product-item .item-index {
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem; }
+      body .product-item .item-name,
+      body .product-item .item-price {
+        display: block; }
+      body .product-item .item-name {
+        margin-top: 1.5rem;
+        font-size: 2rem; }
+      body .product-item .item-price {
+        margin-top: 0.5rem; }
+  body .selector {
+    border: 1px solid yellowgreen; }
+  body .wallet {
+    border: 1px solid yellowgreen; }
