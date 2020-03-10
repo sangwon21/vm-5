@@ -1,17 +1,18 @@
 @import "./reset.css";
+$grey: #eee;
+$grey-shadow: #ccc;
 
 body {
   font-family: -apple-system, sans-serif;
   box-sizing: border-box;
   border: 1px solid red;
-  height: 100vh;
   h1 {
     font-size: 0;
   }
   .wrapper {
     width: 90%;
     min-width: 800px;
-    margin: 0 auto;
+    margin: 20px auto;
     border: 1px solid blue;
     display: flex;
     justify-content: space-between;
@@ -29,25 +30,45 @@ body {
     &-item {
       padding: 0.5rem;
       position: relative;
-      background-color: #eee;
-      border: 1px solid #bbb;
       border-radius: 4px;
-      width: 5rem;
       .item-index {
         position: absolute;
-        top: 0.5rem;
-        left: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: bold;
+        top: 1rem;
+        left: 1rem;
       }
-      .item-name,
-      .item-price {
+      .item-name {
         display: block;
       }
       .item-name {
-        margin-top: 1.5rem;
+        width: 80px;
+        height: 55px;
+        border: 1px solid $grey;
+        border-radius: 8px;
+        padding-top: 25px;
+        margin-bottom: 0.625rem;
         font-size: 2rem;
       }
+      .item-circle,
       .item-price {
-        margin-top: 0.5rem;
+        display: inline-block;
+      }
+      .item-circle {
+        float: left;
+        width: 0.875rem;
+        height: 0.875rem;
+        border-radius: 0.5rem;
+        transform: translate(0.9rem, -1px);
+        background-color: $grey-shadow;
+      }
+      .selected {
+        background-color: red;
+        filter: blur(1px);
+      }
+      .item-price {
+        float: right;
+        padding-right: 0.9rem;
       }
     }
   }
