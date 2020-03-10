@@ -1,20 +1,19 @@
 @import url(./reset.css);
 body {
-  font-family: -apple-system, sans-serif;
-  box-sizing: border-box;
-  border: 1px solid red; }
+  font-family: -apple-system, Helvetica, sans-serif;
+  box-sizing: border-box; }
   body h1 {
     font-size: 0; }
   body .wrapper {
     width: 90%;
     min-width: 800px;
-    margin: 20px auto;
-    border: 1px solid blue;
+    margin: 1.25rem auto;
     display: flex;
     justify-content: space-between; }
   body .product {
-    border: 1px solid yellowgreen;
-    padding: 1rem; }
+    padding: 1rem;
+    padding-right: 2.5rem;
+    border-right: 1px solid #eee; }
     body .product-list {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -28,35 +27,25 @@ body {
       body .product-item .item-index {
         position: absolute;
         font-size: 0.875rem;
+        color: #888;
         font-weight: bold;
         top: 1rem;
         left: 1rem; }
-      body .product-item .item-name {
+      body .product-item .item-name,
+      body .product-item .item-price {
         display: block; }
       body .product-item .item-name {
         width: 80px;
         height: 55px;
-        border: 1px solid #eee;
+        border: 2px solid #eee;
         border-radius: 8px;
         padding-top: 25px;
-        margin-bottom: 0.625rem;
+        margin-bottom: 0.5rem;
         font-size: 2rem; }
-      body .product-item .item-circle,
-      body .product-item .item-price {
-        display: inline-block; }
-      body .product-item .item-circle {
-        float: left;
-        width: 0.875rem;
-        height: 0.875rem;
-        border-radius: 0.5rem;
-        transform: translate(0.9rem, -1px);
-        background-color: #ccc; }
       body .product-item .selected {
-        background-color: red;
-        filter: blur(1px); }
+        background-color: #f6a615; }
       body .product-item .item-price {
-        float: right;
-        padding-right: 0.9rem; }
+        font-weight: bold; }
   body .selector {
     border: 1px solid yellowgreen; }
   body .wallet {

@@ -1,25 +1,24 @@
 @import "./reset.css";
 $grey: #eee;
-$grey-shadow: #ccc;
+$grey-shadow: #888;
 
 body {
-  font-family: -apple-system, sans-serif;
+  font-family: -apple-system, Helvetica, sans-serif;
   box-sizing: border-box;
-  border: 1px solid red;
   h1 {
     font-size: 0;
   }
   .wrapper {
     width: 90%;
     min-width: 800px;
-    margin: 20px auto;
-    border: 1px solid blue;
+    margin: 1.25rem auto;
     display: flex;
     justify-content: space-between;
   }
   .product {
-    border: 1px solid yellowgreen;
     padding: 1rem;
+    padding-right: 2.5rem;
+    border-right: 1px solid $grey;
     &-list {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -34,41 +33,29 @@ body {
       .item-index {
         position: absolute;
         font-size: 0.875rem;
+        color: $grey-shadow;
         font-weight: bold;
         top: 1rem;
         left: 1rem;
       }
-      .item-name {
+      .item-name,
+      .item-price {
         display: block;
       }
       .item-name {
         width: 80px;
         height: 55px;
-        border: 1px solid $grey;
+        border: 2px solid $grey;
         border-radius: 8px;
         padding-top: 25px;
-        margin-bottom: 0.625rem;
+        margin-bottom: 0.5rem;
         font-size: 2rem;
       }
-      .item-circle,
-      .item-price {
-        display: inline-block;
-      }
-      .item-circle {
-        float: left;
-        width: 0.875rem;
-        height: 0.875rem;
-        border-radius: 0.5rem;
-        transform: translate(0.9rem, -1px);
-        background-color: $grey-shadow;
-      }
       .selected {
-        background-color: red;
-        filter: blur(1px);
+        background-color: #f6a615;
       }
       .item-price {
-        float: right;
-        padding-right: 0.9rem;
+        font-weight: bold;
       }
     }
   }
