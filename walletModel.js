@@ -8,6 +8,7 @@ import {
   DECREASE_5000_COIN,
   DECREASE_10000_COIN
 } from "./action.js";
+import { NUM_TO_STR } from "./util.js";
 
 class WalletModel extends Model {
   constructor() {
@@ -21,6 +22,10 @@ class WalletModel extends Model {
       fiveThousand: 1,
       tenThousand: 0
     };
+  }
+
+  isCoinCountZero(target) {
+    return this.state[NUM_TO_STR[`${target}`]] === 0;
   }
 
   dispatch(userAction) {
