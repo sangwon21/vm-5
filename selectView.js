@@ -14,7 +14,8 @@ class SelectView {
       fiveHundred,
       thousand,
       fiveThousand,
-      tenThousand
+      tenThousand,
+      logs
     } = data;
 
     const sum =
@@ -45,17 +46,7 @@ class SelectView {
       </div>
       <div class="message-window">
         <ol class="message">
-          <li>500원이 투입되었습니다</li>
-          <li>500원이 투입되었습니다</li>
-          <li>500원이 투입되었습니다</li>
-          <li>500원이 투입되었습니다</li>
-          <li>500원이 투입되었습니다</li>
-          <li>500원이 투입되었습니다</li>
-          <li>500원이 투입되었습니다</li>
-          <li>500원이 투입되었습니다</li>
-          <li>500원이 투입되었습니다</li>
-          <li>500원이 투입되었습니다</li>
-          <li>500원이 투입되었습니다</li>
+        ${logs.reduce((liHTML, log) => (liHTML += `<li>${log}<li>`), "")}
         </ol>
       </div>`;
   }

@@ -30,3 +30,13 @@ export const NUM_TO_STR = {
   5000: "fiveThousand",
   10000: "tenThousand"
 };
+
+export const LOG_MESSAGE = {
+  TEN_INPUT: "10원이 투입했습니다.",
+  FIFTY_INPUT: "50원이 투입했습니다.",
+  HUNDRED_INPUT: "100원이 투입했습니다.",
+  FIVE_HUNDRED_INPUT: "500원이 투입했습니다.",
+  THOUSAND_INPUT: "1000원이 투입했습니다.",
+  FIVE_THOUSAND_INPUT: "5000원이 투입했습니다.",
+  TEN_THOUSAND_INPUT: "10000원이 투입했습니다."
+};
