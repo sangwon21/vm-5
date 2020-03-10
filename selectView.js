@@ -1,7 +1,9 @@
 class SelectView {
-  constructor() {}
+  constructor(target) {
+    this.target = target;
+  }
   render() {
-    return `<div class="price-window"><b class="price-input">500</b></div>
+    this.target.innerHTML = `<div class="price-window"><b class="price-input">500</b></div>
       <div class="select-button-wrap">
         <ul class="select-button-list">
           <li><button>1</button></li>

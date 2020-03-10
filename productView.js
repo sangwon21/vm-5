@@ -1,7 +1,9 @@
 class ProductView {
-  constructor() {}
+  constructor(target) {
+    this.target = target;
+  }
   render() {
-    return `<ul class="product-list">
+    this.target.innerHTML = `<ul class="product-list">
       <li class="product-item selected">
         <span class="item-index">1</span>
         <div class="item-name">🍺</div>
