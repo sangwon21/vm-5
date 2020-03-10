@@ -1,0 +1,1 @@
+export const DECREASE_10_COIN = "DECREASE_10_COIN";
