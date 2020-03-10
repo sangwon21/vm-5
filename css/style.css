@@ -12,16 +12,17 @@ body {
     font-size: 0; }
   body .wrapper {
     width: 75%;
-    height: inherit;
+    height: calc(100vh - 2.5rem);
+    padding: 1.25rem 0;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between; }
     body .wrapper > div {
+      height: calc(100% - 2.5rem);
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
   body .product {
-    padding: 1rem;
-    padding-right: 1.25rem;
+    padding: 1.25rem;
     background-color: #fff;
     border-radius: 8px; }
     body .product-list {
@@ -114,9 +115,13 @@ body {
         body .selector .message-window .message li {
           margin-bottom: 4px; }
   body .wallet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: #010101;
     border-radius: 8px;
-    padding: 2.5rem 2rem;
+    padding: 1.25rem 1.5rem;
     margin-left: 1.25rem; }
     body .wallet ul {
       display: grid;
