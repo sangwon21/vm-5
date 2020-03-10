@@ -1,29 +1,46 @@
 @import "./reset.css";
+$white: #fff;
 $grey: #eee;
-$grey-shadow: #888;
+$grey-shadow: #505050;
+$point-color: #fea00a;
+$blue: #2979ff;
+$button-color: rgba(255, 255, 255, 0.2);
+$button-hover: rgba(255, 255, 255, 0.5);
+$black: #010101;
+$default-gap: 1.25rem;
 
 body {
   font-family: -apple-system, Helvetica, sans-serif;
+  height: 100vh;
   box-sizing: border-box;
+  background-color: $grey;
+  button {
+    border: none;
+    background-color: none;
+  }
   h1 {
     font-size: 0;
   }
   .wrapper {
-    width: 90%;
-    min-width: 800px;
-    margin: 1.25rem auto;
+    width: 75%;
+    height: inherit;
+    margin: 0 auto;
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    & > div {
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
   }
   .product {
     padding: 1rem;
-    padding-right: 2.5rem;
-    border-right: 1px solid $grey;
+    padding-right: $default-gap;
+    background-color: $white;
+    border-radius: 8px;
     &-list {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      grid-column-gap: 1rem;
-      grid-row-gap: 1rem;
+      grid-gap: 0.5rem;
       text-align: center;
     }
     &-item {
@@ -33,10 +50,9 @@ body {
       .item-index {
         position: absolute;
         font-size: 0.875rem;
-        color: $grey-shadow;
-        font-weight: bold;
-        top: 1rem;
-        left: 1rem;
+        top: 0.8rem;
+        left: 0.8rem;
+        color: rgba(0, 0, 0, 0.3);
       }
       .item-name,
       .item-price {
@@ -45,24 +61,146 @@ body {
       .item-name {
         width: 80px;
         height: 55px;
-        border: 2px solid $grey;
         border-radius: 8px;
         padding-top: 25px;
-        margin-bottom: 0.5rem;
-        font-size: 2rem;
-      }
-      .selected {
-        background-color: #f6a615;
+        font-size: 3rem;
+        margin-bottom: 2px;
       }
       .item-price {
-        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $grey-shadow;
+        border: 1px solid $grey;
+        background-color: $grey;
+        border-radius: 0.75rem;
+        height: 1.5rem;
+      }
+    }
+    .selected {
+      .item-price {
+        border: none;
+        background-color: $blue;
+        color: $white;
       }
     }
   }
   .selector {
-    border: 1px solid yellowgreen;
+    background-color: $black;
+    border-radius: 8px;
+    padding: $default-gap;
+    margin-left: $default-gap;
+    display: flex;
+    flex-direction: column;
+    .price-window {
+      display: flex;
+      padding: $default-gap 0;
+      margin-bottom: 0.5rem;
+      height: 20px;
+      justify-content: flex-end;
+      align-items: center;
+      .price-input {
+        font-size: 2rem;
+        color: $white;
+      }
+    }
+    .select-button-wrap {
+      margin-bottom: 1rem;
+      .select-button-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 0.75rem;
+        li {
+          button {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            background-color: $button-color;
+            transition: background-color 0.2s ease;
+            color: $white;
+            font-size: 1.5rem;
+            &:hover {
+              background-color: $button-hover;
+            }
+          }
+          .command {
+            font-size: 1rem;
+            background-color: $point-color;
+            &:hover {
+              background-color: $white;
+              color: $point-color;
+            }
+          }
+        }
+      }
+    }
+    .message-window {
+      font-size: 0.875rem;
+      border-radius: 4px;
+      padding: 0.75rem;
+      margin-top: 1rem;
+      background-color: $white;
+      height: 120px;
+      .message {
+        height: inherit;
+        overflow-y: scroll;
+        li {
+          margin-bottom: 4px;
+        }
+      }
+    }
   }
   .wallet {
-    border: 1px solid yellowgreen;
+    background-color: $black;
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    margin-left: $default-gap;
+    ul {
+      display: grid;
+      grid-gap: 1rem;
+      li {
+        display: flex;
+        line-height: 0;
+        button,
+        div {
+          box-sizing: border-box;
+          border-radius: 20px;
+        }
+        button {
+          width: 6rem;
+          height: 40px;
+          background-color: $button-color;
+          transition: background-color 0.2s ease;
+          color: $white;
+          margin-right: 1rem;
+          &:hover {
+            background-color: $button-hover;
+          }
+        }
+        div {
+          width: 40px;
+          height: 40px;
+          color: $white;
+          font-size: 1.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+    .wallet-sum {
+      color: $white;
+      text-align: right;
+      margin-top: 4rem;
+      position: relative;
+      font-size: 2rem;
+      &::before {
+        content: "총합";
+        font-size: 0.875rem;
+        position: absolute;
+        left: 0;
+        top: -1.5rem;
+      }
+    }
   }
 }
