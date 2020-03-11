@@ -1,4 +1,5 @@
 import MockItemData from "../util/mockItemData.js";
+import { calculateCoinSum } from "../util/util.js";
 
 class ProductView {
   constructor(target, vendingMachineModel) {
@@ -9,24 +10,7 @@ class ProductView {
   }
 
   render(data) {
-    const {
-      ten,
-      fifty,
-      hundred,
-      fiveHundred,
-      thousand,
-      fiveThousand,
-      tenThousand
-    } = data;
-
-    const sum =
-      (ten ? ten * 10 : 0) +
-      (fifty ? fifty * 50 : 0) +
-      (hundred ? hundred * 100 : 0) +
-      (fiveHundred ? fiveHundred * 500 : 0) +
-      (thousand ? thousand * 1000 : 0) +
-      (fiveThousand ? fiveThousand * 5000 : 0) +
-      (tenThousand ? tenThousand * 10000 : 0);
+    const sum = calculateCoinSum(data);
 
     const liHtml = MockItemData.reduce((liChunk, item) => {
       const { id, name, price, icon } = item;

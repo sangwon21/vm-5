@@ -1,5 +1,5 @@
 import COIN_ACTION from "../action/coinAction.js";
-import { BUTTON_ID, STR_TO_NUM } from "../util/util.js";
+import { BUTTON_ID, STR_TO_NUM, calculateCoinSum } from "../util/util.js";
 
 class WalletView {
   constructor(target, vendingMachineModel, walletModel) {
@@ -83,15 +83,7 @@ class WalletView {
       fiveThousand,
       tenThousand
     } = data;
-
-    const sum =
-      (ten ? ten * 10 : 0) +
-      (fifty ? fifty * 50 : 0) +
-      (hundred ? hundred * 100 : 0) +
-      (fiveHundred ? fiveHundred * 500 : 0) +
-      (thousand ? thousand * 1000 : 0) +
-      (fiveThousand ? fiveThousand * 5000 : 0) +
-      (tenThousand ? tenThousand * 10000 : 0);
+    const sum = calculateCoinSum(data);
 
     this.removeEvents();
     this.target.innerHTML = `<ul>

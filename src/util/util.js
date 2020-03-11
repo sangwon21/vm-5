@@ -40,3 +40,26 @@ export const LOG_MESSAGE = {
   FIVE_THOUSAND_INPUT: "5000원이 투입했습니다.",
   TEN_THOUSAND_INPUT: "10000원이 투입했습니다."
 };
+
+export const calculateCoinSum = data => {
+  const {
+    ten,
+    fifty,
+    hundred,
+    fiveHundred,
+    thousand,
+    fiveThousand,
+    tenThousand
+  } = data;
+
+  const sum =
+    (ten ? ten * 10 : 0) +
+    (fifty ? fifty * 50 : 0) +
+    (hundred ? hundred * 100 : 0) +
+    (fiveHundred ? fiveHundred * 500 : 0) +
+    (thousand ? thousand * 1000 : 0) +
+    (fiveThousand ? fiveThousand * 5000 : 0) +
+    (tenThousand ? tenThousand * 10000 : 0);
+
+  return sum;
+};

@@ -1,3 +1,4 @@
+import { calculateCoinSum } from "../util/util.js";
 class SelectView {
   constructor(target, vendingMachineModel) {
     this.target = target;
@@ -7,25 +8,8 @@ class SelectView {
     this.vendingMachineModel.dispatch({});
   }
   render(data) {
-    const {
-      ten,
-      fifty,
-      hundred,
-      fiveHundred,
-      thousand,
-      fiveThousand,
-      tenThousand,
-      logs
-    } = data;
-
-    const sum =
-      (ten ? ten * 10 : 0) +
-      (fifty ? fifty * 50 : 0) +
-      (hundred ? hundred * 100 : 0) +
-      (fiveHundred ? fiveHundred * 500 : 0) +
-      (thousand ? thousand * 1000 : 0) +
-      (fiveThousand ? fiveThousand * 5000 : 0) +
-      (tenThousand ? tenThousand * 10000 : 0);
+    const sum = calculateCoinSum(data);
+    const { logs } = data;
 
     this.target.innerHTML = `<div class="price-window"><b class="price-input">${sum}</b></div>
       <div class="select-button-wrap">
