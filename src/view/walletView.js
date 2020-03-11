@@ -1,4 +1,4 @@
-import COIN_ACTION from "../action/coinAction.js";
+import { COIN_PAIR_ACTION } from "../action/coinAction.js";
 import { BUTTON_ID, STR_TO_NUM, calculateCoinSum } from "../util/util.js";
 
 class WalletView {
@@ -12,52 +12,40 @@ class WalletView {
     this.walletModel.dispatch({});
   }
 
-  buttonClickHandler(event) {
-    const { target } = event;
-    let type = "";
-    let vendingType = "";
-    let coinWorth = 0;
-    switch (target.id) {
+  getRightfulActionType(coinWorth) {
+    return COIN_PAIR_ACTION[`${coinWorth}`];
+  }
+
+  getRightfulCoinWorth(id) {
+    switch (id) {
       case BUTTON_ID.TEN_WON:
-        type = COIN_ACTION.DECREASE_10_COIN;
-        vendingType = COIN_ACTION.INCREASE_10_COIN;
-        coinWorth = STR_TO_NUM.ten;
-        break;
+        return STR_TO_NUM.ten;
       case BUTTON_ID.FIFTY_WON:
-        type = COIN_ACTION.DECREASE_50_COIN;
-        vendingType = COIN_ACTION.INCREASE_50_COIN;
-        coinWorth = STR_TO_NUM.fifty;
-        break;
+        return STR_TO_NUM.fifty;
       case BUTTON_ID.HUNDRED_WON:
-        type = COIN_ACTION.DECREASE_100_COIN;
-        vendingType = COIN_ACTION.INCREASE_100_COIN;
-        coinWorth = STR_TO_NUM.hundred;
-        break;
+        return STR_TO_NUM.hundred;
       case BUTTON_ID.FIVE_HUNDRED_WON:
-        type = COIN_ACTION.DECREASE_500_COIN;
-        vendingType = COIN_ACTION.INCREASE_500_COIN;
-        coinWorth = STR_TO_NUM.fiveHundred;
-        break;
+        return STR_TO_NUM.fiveHundred;
       case BUTTON_ID.THOUSAND_WON:
-        type = COIN_ACTION.DECREASE_1000_COIN;
-        vendingType = COIN_ACTION.INCREASE_1000_COIN;
-        coinWorth = STR_TO_NUM.thousand;
-        break;
+        return STR_TO_NUM.thousand;
       case BUTTON_ID.FIVE_THOUSAND_WON:
-        type = COIN_ACTION.DECREASE_5000_COIN;
-        vendingType = COIN_ACTION.INCREASE_5000_COIN;
-        coinWorth = STR_TO_NUM.fiveThousand;
-        break;
+        return STR_TO_NUM.fiveThousand;
       case BUTTON_ID.TEN_THOUSAND_WON:
-        type = COIN_ACTION.DECREASE_10000_COIN;
-        vendingType = COIN_ACTION.INCREASE_10000_COIN;
-        coinWorth = STR_TO_NUM.tenThousand;
-        break;
+        return STR_TO_NUM.tenThousand;
       default:
         return;
     }
+  }
+
+  buttonClickHandler(event) {
+    const { target } = event;
+    const coinWorth = this.getRightfulCoinWorth(target.id);
+    if (!coinWorth) {
+      return;
+    }
 
     if (!this.walletModel.isCoinCountZero(coinWorth)) {
+      const [vendingType, type] = this.getRightfulActionType(coinWorth);
       this.walletModel.dispatch.call(this.walletModel, [{ type }]);
       this.vendingMachineModel.dispatch.call(this.vendingMachineModel, [
         { type: vendingType }

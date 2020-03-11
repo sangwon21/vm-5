@@ -1,5 +1,5 @@
 import Model from "./model.js";
-import COIN_ACTION from "../action/coinAction.js";
+import { COIN_ACTION } from "../action/coinAction.js";
 import { NUM_TO_STR } from "../util/util.js";
 
 class WalletModel extends Model {

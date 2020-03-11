@@ -1,5 +1,5 @@
 import Model from "./model.js";
-import COIN_ACTION from "../action/coinAction.js";
+import { COIN_ACTION } from "../action/coinAction.js";
 import { LOG_MESSAGE } from "../util/util.js";
 
 class VendingMachineModel extends Model {
