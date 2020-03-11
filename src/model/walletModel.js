@@ -8,8 +8,8 @@ class WalletModel extends Model {
     this.state = {
       ten: 4,
       fifty: 3,
-      hundred: 2,
-      fiveHundred: 0,
+      hundred: 6,
+      fiveHundred: 4,
       thousand: 2,
       fiveThousand: 1,
       tenThousand: 0

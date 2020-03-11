@@ -63,3 +63,7 @@ export const calculateCoinSum = data => {
 
   return sum;
 };
+
+export const MESSAGE_BOX_CLASS = "message";
+
+export const MAX_MESSAGE_BOX_SCROLL_LENGTH = 1500;
