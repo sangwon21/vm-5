@@ -1,19 +1,32 @@
 @import "./reset.css";
+
+// Color
 $white: #fff;
 $grey: #eee;
 $grey-shadow: #505050;
 $point-color: #fea00a;
+$black: #010101;
 $blue: #2979ff;
 $button-color: rgba(255, 255, 255, 0.2);
 $button-hover: rgba(255, 255, 255, 0.5);
-$black: #010101;
+
+// Size
+$item-width: 80px;
+$item-gap: 25px;
 $default-gap: 1.25rem;
 
+// Typography
+$sans-serif: -apple-system, Helvetica, sans-serif;
+$small-font-size: 0.875rem;
+
 body {
-  font-family: -apple-system, Helvetica, sans-serif;
+  font-family: $sans-serif;
   height: 100vh;
   box-sizing: border-box;
   background-color: $grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   button {
     border: none;
     background-color: none;
@@ -23,14 +36,12 @@ body {
   }
   .wrapper {
     width: 75%;
-    height: calc(100vh - 2.5rem);
+    height: calc(100vh - (#{$default-gap} * 2));
     padding: $default-gap 0;
-    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     & > div {
-      height: calc(100% - 2.5rem);
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     }
   }
@@ -50,7 +61,7 @@ body {
       border-radius: 4px;
       .item-index {
         position: absolute;
-        font-size: 0.875rem;
+        font-size: $small-font-size;
         top: 0.8rem;
         left: 0.8rem;
         color: rgba(0, 0, 0, 0.3);
@@ -60,10 +71,10 @@ body {
         display: block;
       }
       .item-name {
-        width: 80px;
-        height: 55px;
+        width: $item-width;
+        height: calc(#{$item-width} - #{$item-gap});
         border-radius: 8px;
-        padding-top: 25px;
+        padding-top: $item-gap;
         font-size: 3rem;
         margin-bottom: 2px;
       }
@@ -97,8 +108,8 @@ body {
       display: flex;
       padding: $default-gap 0;
       margin-bottom: 0.5rem;
-      height: 20px;
-      justify-content: flex-end;
+      height: 1rem;
+      justify-content: center;
       align-items: center;
       .price-input {
         font-size: 2rem;
@@ -112,6 +123,9 @@ body {
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 0.75rem;
         li {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           button {
             width: 60px;
             height: 60px;
@@ -125,8 +139,8 @@ body {
             }
           }
           .command {
-            font-size: 1rem;
             background-color: $point-color;
+            font-size: 1rem;
             &:hover {
               background-color: $white;
               color: $point-color;
@@ -136,7 +150,7 @@ body {
       }
     }
     .message-window {
-      font-size: 0.875rem;
+      font-size: $small-font-size;
       border-radius: 4px;
       padding: 0.75rem;
       margin-top: 1rem;
@@ -145,6 +159,7 @@ body {
       .message {
         height: inherit;
         overflow-y: scroll;
+        word-break: break-all;
         li {
           margin-bottom: 4px;
         }
@@ -196,15 +211,15 @@ body {
     .wallet-sum {
       color: $white;
       text-align: right;
-      margin-top: 4rem;
+      margin-top: 3rem;
       position: relative;
       font-size: 2rem;
       &::before {
         content: "총합";
-        font-size: 0.875rem;
+        font-size: $small-font-size;
         position: absolute;
         left: 0;
-        top: -1.5rem;
+        top: -1.2rem;
       }
     }
   }
