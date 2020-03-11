@@ -1,4 +1,4 @@
-import MockItemData from "./mockItemData.js";
+import MockItemData from "../util/mockItemData.js";
 
 class ProductView {
   constructor(target, vendingMachineModel) {

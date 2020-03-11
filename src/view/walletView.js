@@ -13,8 +13,8 @@ import {
   INCREASE_5000_COIN,
   DECREASE_10000_COIN,
   INCREASE_10000_COIN
-} from "./action.js";
-import { BUTTON_ID, STR_TO_NUM } from "./util.js";
+} from "../action/action.js";
+import { BUTTON_ID, STR_TO_NUM } from "../util/util.js";
 
 class WalletView {
   constructor(target, vendingMachineModel, walletModel) {

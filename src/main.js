@@ -1,9 +1,9 @@
-import ProductView from "./productView.js";
-import SelectView from "./selectView.js";
-import WalletView from "./walletView.js";
-import WalletModel from "./walletModel.js";
-import VendingMachineModel from "./vendingMachineModel.js";
-import { EW } from "./util.js";
+import ProductView from "./view/productView.js";
+import SelectView from "./view/selectView.js";
+import WalletView from "./view/walletView.js";
+import WalletModel from "./model/walletModel.js";
+import VendingMachineModel from "./model/vendingMachineModel.js";
+import { EW } from "./util/util.js";
 
 const walletModel = new WalletModel();
 const vendingMachineModel = new VendingMachineModel();

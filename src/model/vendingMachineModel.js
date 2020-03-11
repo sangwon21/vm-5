@@ -7,8 +7,8 @@ import {
   INCREASE_1000_COIN,
   INCREASE_5000_COIN,
   INCREASE_10000_COIN
-} from "./action.js";
-import { LOG_MESSAGE } from "./util.js";
+} from "../action/action.js";
+import { LOG_MESSAGE } from "../util/util.js";
 
 class VendingMachineModel extends Model {
   constructor() {

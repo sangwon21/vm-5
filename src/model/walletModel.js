@@ -7,8 +7,8 @@ import {
   DECREASE_1000_COIN,
   DECREASE_5000_COIN,
   DECREASE_10000_COIN
-} from "./action.js";
-import { NUM_TO_STR } from "./util.js";
+} from "../action/action.js";
+import { NUM_TO_STR } from "../util/util.js";
 
 class WalletModel extends Model {
   constructor() {
