@@ -29,36 +29,28 @@ class WalletModel extends Model {
 
     switch (action.type) {
       case COIN_ACTION.DECREASE_10_COIN:
-        const ten = this.state.ten - 1 > 0 ? this.state.ten - 1 : 0;
-        this.state = { ...this.state, ten };
+        this.state = { ...this.state, ten: this.state.ten - 1 };
         break;
       case COIN_ACTION.DECREASE_50_COIN:
-        const fifty = this.state.fifty - 1 > 0 ? this.state.fifty - 1 : 0;
-        this.state = { ...this.state, fifty };
+        this.state = { ...this.state, fifty: this.state.fifty - 1 };
         break;
       case COIN_ACTION.DECREASE_100_COIN:
-        const hundred = this.state.hundred - 1 > 0 ? this.state.hundred - 1 : 0;
-        this.state = { ...this.state, hundred };
+        this.state = { ...this.state, hundred: this.state.hundred - 1 };
         break;
       case COIN_ACTION.DECREASE_500_COIN:
-        const fiveHundred =
-          this.state.fiveHundred - 1 > 0 ? this.state.fiveHundred - 1 : 0;
-        this.state = { ...this.state, fiveHundred };
+        this.state = { ...this.state, fiveHundred: this.state.fiveHundred - 1 };
         break;
       case COIN_ACTION.DECREASE_1000_COIN:
-        const thousand =
-          this.state.thousand - 1 > 0 ? this.state.thousand - 1 : 0;
-        this.state = { ...this.state, thousand };
+        this.state = { ...this.state, thousand: this.state.thousand - 1 };
         break;
       case COIN_ACTION.DECREASE_5000_COIN:
-        const fiveThousand =
-          this.state.fiveThousand - 1 > 0 ? this.state.fiveThousand - 1 : 0;
-        this.state = { ...this.state, fiveThousand };
+        this.state = {
+          ...this.state,
+          fiveThousand: this.state.fiveThousand - 1
+        };
         break;
       case COIN_ACTION.DECREASE_10000_COIN:
-        const tenThousand =
-          this.state.tenThousand - 1 > 0 ? this.state.tenThousand - 1 : 0;
-        this.state = { ...this.state, tenThousand };
+        this.state = { ...this.state, tenThousand: this.state.tenThousand - 1 };
         break;
       default:
         break;
