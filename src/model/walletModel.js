@@ -1,13 +1,5 @@
 import Model from "./model.js";
-import {
-  DECREASE_10_COIN,
-  DECREASE_50_COIN,
-  DECREASE_100_COIN,
-  DECREASE_500_COIN,
-  DECREASE_1000_COIN,
-  DECREASE_5000_COIN,
-  DECREASE_10000_COIN
-} from "../action/action.js";
+import COIN_ACTION from "../action/coinAction.js";
 import { NUM_TO_STR } from "../util/util.js";
 
 class WalletModel extends Model {
@@ -36,34 +28,34 @@ class WalletModel extends Model {
     const [action] = userAction;
 
     switch (action.type) {
-      case DECREASE_10_COIN:
+      case COIN_ACTION.DECREASE_10_COIN:
         const ten = this.state.ten - 1 > 0 ? this.state.ten - 1 : 0;
         this.state = { ...this.state, ten };
         break;
-      case DECREASE_50_COIN:
+      case COIN_ACTION.DECREASE_50_COIN:
         const fifty = this.state.fifty - 1 > 0 ? this.state.fifty - 1 : 0;
         this.state = { ...this.state, fifty };
         break;
-      case DECREASE_100_COIN:
+      case COIN_ACTION.DECREASE_100_COIN:
         const hundred = this.state.hundred - 1 > 0 ? this.state.hundred - 1 : 0;
         this.state = { ...this.state, hundred };
         break;
-      case DECREASE_500_COIN:
+      case COIN_ACTION.DECREASE_500_COIN:
         const fiveHundred =
           this.state.fiveHundred - 1 > 0 ? this.state.fiveHundred - 1 : 0;
         this.state = { ...this.state, fiveHundred };
         break;
-      case DECREASE_1000_COIN:
+      case COIN_ACTION.DECREASE_1000_COIN:
         const thousand =
           this.state.thousand - 1 > 0 ? this.state.thousand - 1 : 0;
         this.state = { ...this.state, thousand };
         break;
-      case DECREASE_5000_COIN:
+      case COIN_ACTION.DECREASE_5000_COIN:
         const fiveThousand =
           this.state.fiveThousand - 1 > 0 ? this.state.fiveThousand - 1 : 0;
         this.state = { ...this.state, fiveThousand };
         break;
-      case DECREASE_10000_COIN:
+      case COIN_ACTION.DECREASE_10000_COIN:
         const tenThousand =
           this.state.tenThousand - 1 > 0 ? this.state.tenThousand - 1 : 0;
         this.state = { ...this.state, tenThousand };
