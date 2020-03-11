@@ -12,8 +12,6 @@ const product = EW(".product");
 const selector = EW(".selector");
 const wallet = EW(".wallet");
 
-const productView = new ProductView(product);
+const productView = new ProductView(product, vendingMachineModel);
 const selectView = new SelectView(selector, vendingMachineModel);
 const walletView = new WalletView(wallet, vendingMachineModel, walletModel);
-
-productView.render();

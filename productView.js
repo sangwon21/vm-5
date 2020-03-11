@@ -1,91 +1,46 @@
+import MockItemData from "./mockItemData.js";
+
 class ProductView {
-  constructor(target) {
+  constructor(target, vendingMachineModel) {
     this.target = target;
+    this.vendingMachineModel = vendingMachineModel;
+    this.render = this.render.bind(this);
+    this.vendingMachineModel.subscribe(this.render);
   }
-  render() {
+
+  render(data) {
+    const {
+      ten,
+      fifty,
+      hundred,
+      fiveHundred,
+      thousand,
+      fiveThousand,
+      tenThousand
+    } = data;
+
+    const sum =
+      (ten ? ten * 10 : 0) +
+      (fifty ? fifty * 50 : 0) +
+      (hundred ? hundred * 100 : 0) +
+      (fiveHundred ? fiveHundred * 500 : 0) +
+      (thousand ? thousand * 1000 : 0) +
+      (fiveThousand ? fiveThousand * 5000 : 0) +
+      (tenThousand ? tenThousand * 10000 : 0);
+
+    const liHtml = MockItemData.reduce((liChunk, item) => {
+      const { id, name, price, icon } = item;
+      let li =
+        sum < price
+          ? `<li class="product-item">`
+          : `<li class="product-item selected">`;
+      li += `<span class="item-index">${id}</span><div class="item-name">${icon}</div><span class="item-price">${price}</span></li>`;
+      liChunk += li;
+      return liChunk;
+    }, "");
+
     this.target.innerHTML = `<ul class="product-list">
-      <li class="product-item selected">
-        <span class="item-index">1</span>
-        <div class="item-name">🍺</div>
-        <span class="item-price">1500</span>
-      </li>
-      <li class="product-item ">
-        <span class="item-index">2</span>
-        <span class="item-name ">☕️</span>
-        <span class="item-price">500</span>
-      </li>
-      <li class="product-item ">
-        <span class="item-index">3</span>
-        <span class="item-name">🧃</span>
-        <span class="item-price">500</span>
-      </li>
-      <li class="product-item ">
-        <span class="item-index">4</span>
-        <span class="item-name">🍏</span>
-        <span class="item-price">500</span>
-      </li>
-      <li class="product-item ">
-        <span class="item-index">5</span>
-        <span class="item-name">🍐</span>
-        <span class="item-price">500</span>
-      </li>
-      <li class="product-item ">
-        <span class="item-index">6</span>
-        <span class="item-name">🍊</span>
-        <span class="item-price">500</span>
-      </li>
-      <li class="product-item ">
-        <span class="item-index">7</span>
-        <span class="item-name">🍌</span>
-        <span class="item-price">500</span>
-      </li>
-      <li class="product-item ">
-        <span class="item-index">8</span>
-        <span class="item-name">🥑</span>
-        <div class="item-circle "></div>
-        <span class="item-price">500</span>
-      </li>
-      <li class="product-item selected">
-        <span class="item-index">9</span>
-        <span class="item-name">🥨</span>
-        <span class="item-price">500</span>
-      </li>
-      <li class="product-item selected">
-        <span class="item-index">10</span>
-        <span class="item-name">🧀</span>
-        <span class="item-price">500</span>
-      </li>
-      <li class="product-item selected">
-        <span class="item-index">11</span>
-        <span class="item-name">🧇</span>
-        <span class="item-price">500</span>
-      </li>
-      <li class="product-item selected">
-        <span class="item-index">12</span>
-        <span class="item-name">🍔</span>
-        <div class="item-circle"></div>
-        <span class="item-price">500</span>
-      </li>
-      <li class="product-item selected">
-        <span class="item-index">13</span>
-        <span class="item-name">🍕</span>
-        <span class="item-price">500</span>
-      </li>
-      <li class="product-item selected">
-        <span class="item-index">14</span>
-        <span class="item-name">🍙</span>
-        <span class="item-price">500</span>
-      </li>
-      <li class="product-item selected">
-        <span class="item-index">15</span>
-        <span class="item-name">🍫</span>
-        <span class="item-price">500</span>
-      </li>
-      <li class="product-item selected">
-        <span class="item-index">16</span>
-        <span class="item-name">🥛</span>
-        <span class="item-price">500</span>
-      </li>
+      ${liHtml}
     </ul>`;
   }
 }
