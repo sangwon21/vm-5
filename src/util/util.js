@@ -12,6 +12,16 @@ export const BUTTON_ID = {
 };
 
 export const STR_TO_NUM = {
+  zero: 0,
+  one: 1,
+  two: 2,
+  three: 3,
+  four: 4,
+  five: 5,
+  six: 6,
+  seven: 7,
+  eight: 8,
+  nine: 9,
   ten: 10,
   fifty: 50,
   hundred: 100,
@@ -67,3 +77,20 @@ export const calculateCoinSum = data => {
 export const MESSAGE_BOX_CLASS = "message";
 
 export const MAX_MESSAGE_BOX_SCROLL_LENGTH = 1500;
+
+export const NUMBER_BUTTON_ID = {
+  ONE: "one",
+  TWO: "two",
+  THREE: "three",
+  FOUR: "four",
+  FIVE: "five",
+  SIX: "six",
+  SEVEN: "seven",
+  EIGHT: "eight",
+  NINE: "nine",
+  ZERO: "zero",
+  CANCEL: "cancel",
+  SUBMIT: "submit"
+};
+
+export const SELECTED_NUMBER_MAX_LENGTH = 2;

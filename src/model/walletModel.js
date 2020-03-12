@@ -12,7 +12,7 @@ class WalletModel extends Model {
       fiveHundred: 4,
       thousand: 2,
       fiveThousand: 1,
-      tenThousand: 0
+      tenThousand: 1
     };
   }
 

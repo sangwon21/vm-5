@@ -8,49 +8,49 @@ const MockItemData = [
   {
     id: 2,
     name: "커피",
-    price: 500,
+    price: 3500,
     icon: "☕️"
   },
   {
     id: 3,
     name: "사과 쥬스",
-    price: 500,
+    price: 300,
     icon: "🧃"
   },
   {
     id: 4,
     name: "사과",
-    price: 500,
+    price: 6500,
     icon: "🍏"
   },
   {
     id: 5,
     name: "모과",
-    price: 500,
+    price: 2500,
     icon: "🍐"
   },
   {
     id: 6,
     name: "귤",
-    price: 500,
+    price: 10500,
     icon: "🍊"
   },
   {
     id: 7,
     name: "바나나",
-    price: 500,
+    price: 8500,
     icon: "🍌"
   },
   {
     id: 8,
     name: "아보카도",
-    price: 500,
+    price: 1400,
     icon: "🥑"
   },
   {
     id: 9,
     name: "프레츨",
-    price: 500,
+    price: 2500,
     icon: "🥨"
   },
   {
@@ -68,7 +68,7 @@ const MockItemData = [
   {
     id: 12,
     name: "햄버거",
-    price: 1500,
+    price: 21500,
     icon: "🍔"
   },
   {

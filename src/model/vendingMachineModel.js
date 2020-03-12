@@ -1,6 +1,11 @@
 import Model from "./model.js";
 import { COIN_ACTION } from "../action/coinAction.js";
-import { LOG_MESSAGE } from "../util/util.js";
+import { NUMBER_BUTTON_ACTION } from "../action/numberButtonAction.js";
+import {
+  LOG_MESSAGE,
+  STR_TO_NUM,
+  SELECTED_NUMBER_MAX_LENGTH
+} from "../util/util.js";
 
 class VendingMachineModel extends Model {
   constructor() {
@@ -13,8 +18,17 @@ class VendingMachineModel extends Model {
       thousand: 0,
       fiveThousand: 0,
       tenThousand: 0,
-      logs: []
+      logs: [],
+      selectedNumber: ""
     };
+  }
+
+  hasSelectedNumber() {
+    return this.state.selectedNumber.length !== 0;
+  }
+
+  hasSelectedNumberReachedLimit() {
+    return this.state.selectedNumber.length >= SELECTED_NUMBER_MAX_LENGTH;
   }
 
   dispatch(userAction) {
@@ -74,6 +88,77 @@ class VendingMachineModel extends Model {
           logs: [...this.state.logs, LOG_MESSAGE.TEN_THOUSAND_INPUT]
         };
         break;
+      case NUMBER_BUTTON_ACTION.NUMBER_0_INPUT:
+        this.state = {
+          ...this.state,
+          selectedNumber: this.state.selectedNumber + STR_TO_NUM.zero
+        };
+        break;
+      case NUMBER_BUTTON_ACTION.NUMBER_1_INPUT:
+        this.state = {
+          ...this.state,
+          selectedNumber: this.state.selectedNumber + STR_TO_NUM.one
+        };
+        break;
+      case NUMBER_BUTTON_ACTION.NUMBER_2_INPUT:
+        this.state = {
+          ...this.state,
+          selectedNumber: this.state.selectedNumber + STR_TO_NUM.two
+        };
+        break;
+      case NUMBER_BUTTON_ACTION.NUMBER_3_INPUT:
+        this.state = {
+          ...this.state,
+          selectedNumber: this.state.selectedNumber + STR_TO_NUM.three
+        };
+        break;
+      case NUMBER_BUTTON_ACTION.NUMBER_4_INPUT:
+        this.state = {
+          ...this.state,
+          selectedNumber: this.state.selectedNumber + STR_TO_NUM.four
+        };
+        break;
+      case NUMBER_BUTTON_ACTION.NUMBER_5_INPUT:
+        this.state = {
+          ...this.state,
+          selectedNumber: this.state.selectedNumber + STR_TO_NUM.five
+        };
+        break;
+      case NUMBER_BUTTON_ACTION.NUMBER_6_INPUT:
+        this.state = {
+          ...this.state,
+          selectedNumber: this.state.selectedNumber + STR_TO_NUM.six
+        };
+        break;
+      case NUMBER_BUTTON_ACTION.NUMBER_7_INPUT:
+        this.state = {
+          ...this.state,
+          selectedNumber: this.state.selectedNumber + STR_TO_NUM.seven
+        };
+        break;
+      case NUMBER_BUTTON_ACTION.NUMBER_8_INPUT:
+        this.state = {
+          ...this.state,
+          selectedNumber: this.state.selectedNumber + STR_TO_NUM.eight
+        };
+        break;
+      case NUMBER_BUTTON_ACTION.NUMBER_9_INPUT:
+        this.state = {
+          ...this.state,
+          selectedNumber: this.state.selectedNumber + STR_TO_NUM.nine
+        };
+        break;
+      case NUMBER_BUTTON_ACTION.NUMBER_CANCEL_INPUT:
+        this.state = {
+          ...this.state,
+          selectedNumber: ""
+        };
+        break;
+      case NUMBER_BUTTON_ACTION.NUMBER_SUBMIT_INPUT:
+        this.state = {
+          ...this.state,
+          selectedNumber: ""
+        };
       default:
         break;
     }
