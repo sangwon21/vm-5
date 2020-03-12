@@ -1,11 +1,11 @@
 import Model from "./model.js";
-import { COIN_ACTION } from "../action/coinAction.js";
-import { NUMBER_BUTTON_ACTION } from "../action/numberButtonAction.js";
+import { INCREASE_COIN } from "../action/coinAction.js";
+import { NUMBER_INPUT } from "../action/numberButtonAction.js";
 import {
   LOG_MESSAGE,
-  STR_TO_NUM,
-  SELECTED_NUMBER_MAX_LENGTH
-} from "../util/util.js";
+  SELECTED_NUMBER_MAX_LENGTH,
+  NUM_TO_STR
+} from "../util/constants.js";
 
 class VendingMachineModel extends Model {
   constructor() {
@@ -31,134 +31,37 @@ class VendingMachineModel extends Model {
     return this.state.selectedNumber.length >= SELECTED_NUMBER_MAX_LENGTH;
   }
 
+  findTargetNameAndLog(targetNumber) {
+    const rightFulString = NUM_TO_STR[`${targetNumber}`];
+    return [rightFulString, LOG_MESSAGE[`${rightFulString}`]];
+  }
+
   dispatch(userAction) {
     if (!Array.isArray(userAction)) {
       this.notify.call(this, [this.state]);
       return;
     }
     const [action] = userAction;
+    const { type, payload } = action;
 
-    switch (action.type) {
-      case COIN_ACTION.INCREASE_10_COIN:
+    switch (type) {
+      case INCREASE_COIN:
+        const [targetPropertyName, logMessage] = this.findTargetNameAndLog(
+          payload
+        );
         this.state = {
           ...this.state,
-          ten: this.state.ten + 1,
-          logs: [...this.state.logs, LOG_MESSAGE.TEN_INPUT]
+          logs: [...this.state.logs, logMessage]
+        };
+        this.state[`${targetPropertyName}`] =
+          this.state[`${targetPropertyName}`] + 1;
+        break;
+      case NUMBER_INPUT:
+        this.state = {
+          ...this.state,
+          selectedNumber: this.state.selectedNumber + payload
         };
         break;
-      case COIN_ACTION.INCREASE_50_COIN:
-        this.state = {
-          ...this.state,
-          fifty: this.state.fifty + 1,
-          logs: [...this.state.logs, LOG_MESSAGE.FIFTY_INPUT]
-        };
-        break;
-      case COIN_ACTION.INCREASE_100_COIN:
-        this.state = {
-          ...this.state,
-          hundred: this.state.hundred + 1,
-          logs: [...this.state.logs, LOG_MESSAGE.HUNDRED_INPUT]
-        };
-        break;
-      case COIN_ACTION.INCREASE_500_COIN:
-        this.state = {
-          ...this.state,
-          fiveHundred: this.state.fiveHundred + 1,
-          logs: [...this.state.logs, LOG_MESSAGE.FIVE_HUNDRED_INPUT]
-        };
-        break;
-      case COIN_ACTION.INCREASE_1000_COIN:
-        this.state = {
-          ...this.state,
-          thousand: this.state.thousand + 1,
-          logs: [...this.state.logs, LOG_MESSAGE.THOUSAND_INPUT]
-        };
-        break;
-      case COIN_ACTION.INCREASE_5000_COIN:
-        this.state = {
-          ...this.state,
-          fiveThousand: this.state.fiveThousand + 1,
-          logs: [...this.state.logs, LOG_MESSAGE.FIVE_THOUSAND_INPUT]
-        };
-        break;
-      case COIN_ACTION.INCREASE_10000_COIN:
-        this.state = {
-          ...this.state,
-          tenThousand: this.state.tenThousand + 1,
-          logs: [...this.state.logs, LOG_MESSAGE.TEN_THOUSAND_INPUT]
-        };
-        break;
-      case NUMBER_BUTTON_ACTION.NUMBER_0_INPUT:
-        this.state = {
-          ...this.state,
-          selectedNumber: this.state.selectedNumber + STR_TO_NUM.zero
-        };
-        break;
-      case NUMBER_BUTTON_ACTION.NUMBER_1_INPUT:
-        this.state = {
-          ...this.state,
-          selectedNumber: this.state.selectedNumber + STR_TO_NUM.one
-        };
-        break;
-      case NUMBER_BUTTON_ACTION.NUMBER_2_INPUT:
-        this.state = {
-          ...this.state,
-          selectedNumber: this.state.selectedNumber + STR_TO_NUM.two
-        };
-        break;
-      case NUMBER_BUTTON_ACTION.NUMBER_3_INPUT:
-        this.state = {
-          ...this.state,
-          selectedNumber: this.state.selectedNumber + STR_TO_NUM.three
-        };
-        break;
-      case NUMBER_BUTTON_ACTION.NUMBER_4_INPUT:
-        this.state = {
-          ...this.state,
-          selectedNumber: this.state.selectedNumber + STR_TO_NUM.four
-        };
-        break;
-      case NUMBER_BUTTON_ACTION.NUMBER_5_INPUT:
-        this.state = {
-          ...this.state,
-          selectedNumber: this.state.selectedNumber + STR_TO_NUM.five
-        };
-        break;
-      case NUMBER_BUTTON_ACTION.NUMBER_6_INPUT:
-        this.state = {
-          ...this.state,
-          selectedNumber: this.state.selectedNumber + STR_TO_NUM.six
-        };
-        break;
-      case NUMBER_BUTTON_ACTION.NUMBER_7_INPUT:
-        this.state = {
-          ...this.state,
-          selectedNumber: this.state.selectedNumber + STR_TO_NUM.seven
-        };
-        break;
-      case NUMBER_BUTTON_ACTION.NUMBER_8_INPUT:
-        this.state = {
-          ...this.state,
-          selectedNumber: this.state.selectedNumber + STR_TO_NUM.eight
-        };
-        break;
-      case NUMBER_BUTTON_ACTION.NUMBER_9_INPUT:
-        this.state = {
-          ...this.state,
-          selectedNumber: this.state.selectedNumber + STR_TO_NUM.nine
-        };
-        break;
-      case NUMBER_BUTTON_ACTION.NUMBER_CANCEL_INPUT:
-        this.state = {
-          ...this.state,
-          selectedNumber: ""
-        };
-        break;
-      case NUMBER_BUTTON_ACTION.NUMBER_SUBMIT_INPUT:
-        this.state = {
-          ...this.state,
-          selectedNumber: ""
-        };
       default:
         break;
     }

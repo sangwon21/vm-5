@@ -1,5 +1,6 @@
-import { COIN_PAIR_ACTION } from "../action/coinAction.js";
-import { BUTTON_ID, STR_TO_NUM, calculateCoinSum } from "../util/util.js";
+import { INCREASE_COIN, DECREASE_COIN } from "../action/coinAction.js";
+import { calculateCoinSum } from "../util/util.js";
+import { BUTTON_ID, STR_TO_NUM } from "../util/constants.js";
 
 class WalletView {
   constructor(target, vendingMachineModel, walletModel) {
@@ -10,10 +11,6 @@ class WalletView {
     this.vendingMachineModel = vendingMachineModel;
     this.walletModel.subscribe(this.render);
     this.walletModel.dispatch({});
-  }
-
-  getRightfulActionType(coinWorth) {
-    return COIN_PAIR_ACTION[`${coinWorth}`];
   }
 
   getRightfulCoinWorth(id) {
@@ -45,10 +42,11 @@ class WalletView {
     }
 
     if (!this.walletModel.isCoinCountZero(coinWorth)) {
-      const [vendingType, type] = this.getRightfulActionType(coinWorth);
-      this.walletModel.dispatch.call(this.walletModel, [{ type }]);
+      this.walletModel.dispatch.call(this.walletModel, [
+        { type: DECREASE_COIN, payload: coinWorth }
+      ]);
       this.vendingMachineModel.dispatch.call(this.vendingMachineModel, [
-        { type: vendingType }
+        { type: INCREASE_COIN, payload: coinWorth }
       ]);
     }
   }

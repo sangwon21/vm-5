@@ -1,6 +1,6 @@
 import Model from "./model.js";
-import { COIN_ACTION } from "../action/coinAction.js";
-import { NUM_TO_STR } from "../util/util.js";
+import { DECREASE_COIN } from "../action/coinAction.js";
+import { NUM_TO_STR } from "../util/constants.js";
 
 class WalletModel extends Model {
   constructor() {
@@ -26,31 +26,17 @@ class WalletModel extends Model {
       return;
     }
     const [action] = userAction;
+    const { type, payload } = action;
 
-    switch (action.type) {
-      case COIN_ACTION.DECREASE_10_COIN:
-        this.state = { ...this.state, ten: this.state.ten - 1 };
-        break;
-      case COIN_ACTION.DECREASE_50_COIN:
-        this.state = { ...this.state, fifty: this.state.fifty - 1 };
-        break;
-      case COIN_ACTION.DECREASE_100_COIN:
-        this.state = { ...this.state, hundred: this.state.hundred - 1 };
-        break;
-      case COIN_ACTION.DECREASE_500_COIN:
-        this.state = { ...this.state, fiveHundred: this.state.fiveHundred - 1 };
-        break;
-      case COIN_ACTION.DECREASE_1000_COIN:
-        this.state = { ...this.state, thousand: this.state.thousand - 1 };
-        break;
-      case COIN_ACTION.DECREASE_5000_COIN:
+    const targetPropertyName = NUM_TO_STR[`${payload}`];
+
+    switch (type) {
+      case DECREASE_COIN:
         this.state = {
-          ...this.state,
-          fiveThousand: this.state.fiveThousand - 1
+          ...this.state
         };
-        break;
-      case COIN_ACTION.DECREASE_10000_COIN:
-        this.state = { ...this.state, tenThousand: this.state.tenThousand - 1 };
+        this.state[`${targetPropertyName}`] =
+          this.state[`${targetPropertyName}`] - 1;
         break;
       default:
         break;

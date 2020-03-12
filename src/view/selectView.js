@@ -1,11 +1,11 @@
+import { EW, calculateCoinSum } from "../util/util.js";
 import {
-  EW,
-  calculateCoinSum,
   MESSAGE_BOX_CLASS,
   MAX_MESSAGE_BOX_SCROLL_LENGTH,
-  NUMBER_BUTTON_ID
-} from "../util/util.js";
-import { NUMBER_BUTTON_ACTION } from "../action/numberButtonAction.js";
+  NUMBER_BUTTON_ID,
+  STR_TO_NUM
+} from "../util/constants.js";
+import { NUMBER_INPUT } from "../action/numberButtonAction.js";
 
 class SelectView {
   constructor(target, vendingMachineModel) {
@@ -21,32 +21,32 @@ class SelectView {
     EW(`.${MESSAGE_BOX_CLASS}`).scrollTop = MAX_MESSAGE_BOX_SCROLL_LENGTH;
   }
 
-  getRightfulActionType(id) {
+  getRightfulButtonWorth(id) {
     switch (id) {
       case NUMBER_BUTTON_ID.ZERO:
-        return NUMBER_BUTTON_ACTION.NUMBER_0_INPUT;
+        return STR_TO_NUM[`${NUMBER_BUTTON_ID.ZERO}`];
       case NUMBER_BUTTON_ID.ONE:
-        return NUMBER_BUTTON_ACTION.NUMBER_1_INPUT;
+        return STR_TO_NUM[`${NUMBER_BUTTON_ID.ONE}`];
       case NUMBER_BUTTON_ID.TWO:
-        return NUMBER_BUTTON_ACTION.NUMBER_2_INPUT;
+        return STR_TO_NUM[`${NUMBER_BUTTON_ID.TWO}`];
       case NUMBER_BUTTON_ID.THREE:
-        return NUMBER_BUTTON_ACTION.NUMBER_3_INPUT;
+        return STR_TO_NUM[`${NUMBER_BUTTON_ID.THREE}`];
       case NUMBER_BUTTON_ID.FOUR:
-        return NUMBER_BUTTON_ACTION.NUMBER_4_INPUT;
+        return STR_TO_NUM[`${NUMBER_BUTTON_ID.FOUR}`];
       case NUMBER_BUTTON_ID.FIVE:
-        return NUMBER_BUTTON_ACTION.NUMBER_5_INPUT;
+        return STR_TO_NUM[`${NUMBER_BUTTON_ID.FIVE}`];
       case NUMBER_BUTTON_ID.SIX:
-        return NUMBER_BUTTON_ACTION.NUMBER_6_INPUT;
+        return STR_TO_NUM[`${NUMBER_BUTTON_ID.SIX}`];
       case NUMBER_BUTTON_ID.SEVEN:
-        return NUMBER_BUTTON_ACTION.NUMBER_7_INPUT;
+        return STR_TO_NUM[`${NUMBER_BUTTON_ID.SEVEN}`];
       case NUMBER_BUTTON_ID.EIGHT:
-        return NUMBER_BUTTON_ACTION.NUMBER_8_INPUT;
+        return STR_TO_NUM[`${NUMBER_BUTTON_ID.EIGHT}`];
       case NUMBER_BUTTON_ID.NINE:
-        return NUMBER_BUTTON_ACTION.NUMBER_9_INPUT;
+        return STR_TO_NUM[`${NUMBER_BUTTON_ID.NINE}`];
       case NUMBER_BUTTON_ID.SUBMIT:
-        return NUMBER_BUTTON_ACTION.NUMBER_SUBMIT_INPUT;
+        return STR_TO_NUM[`${NUMBER_BUTTON_ID.SUBMIT}`];
       case NUMBER_BUTTON_ID.CANCEL:
-        return NUMBER_BUTTON_ACTION.NUMBER_CANCEL_INPUT;
+        return STR_TO_NUM[`${NUMBER_BUTTON_ID.CANCEL}`];
       default:
         return;
     }
@@ -55,15 +55,15 @@ class SelectView {
   numberButtonClickHandler(event) {
     const { target } = event;
 
-    const type = this.getRightfulActionType(target.id);
+    const buttonWorth = this.getRightfulButtonWorth(target.id);
 
-    if (!type) {
+    if (buttonWorth === undefined) {
       return;
     }
 
     if (!this.vendingMachineModel.hasSelectedNumberReachedLimit()) {
       this.vendingMachineModel.dispatch.call(this.vendingMachineModel, [
-        { type }
+        { type: NUMBER_INPUT, payload: buttonWorth }
       ]);
     }
   }
