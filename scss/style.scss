@@ -83,7 +83,6 @@ body {
         justify-content: center;
         align-items: center;
         color: $grey-shadow;
-        border: 1px solid $grey;
         background-color: $grey;
         border-radius: 0.75rem;
         height: 1.5rem;
@@ -91,7 +90,6 @@ body {
     }
     .selected {
       .item-price {
-        border: none;
         background-color: $blue;
         color: $white;
       }
@@ -151,6 +149,7 @@ body {
     }
     .message-window {
       font-size: $small-font-size;
+      width: 200px;
       border-radius: 4px;
       padding: 0.75rem;
       margin-top: 1rem;
@@ -161,7 +160,8 @@ body {
         overflow-y: scroll;
         word-break: break-all;
         li {
-          margin-bottom: 4px;
+          line-height: 1.2;
+          margin-bottom: 6px;
         }
       }
     }
