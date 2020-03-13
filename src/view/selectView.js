@@ -1,10 +1,5 @@
 import { EW, calculateCoinSum } from "../util/util.js";
-import {
-  MESSAGE_BOX_CLASS,
-  MAX_MESSAGE_BOX_SCROLL_LENGTH,
-  NUMBER_BUTTON_ID,
-  STR_TO_NUM
-} from "../util/constants.js";
+import { MESSAGE_BOX_CLASS, MAX_MESSAGE_BOX_SCROLL_LENGTH, NUMBER_BUTTON_ID, STR_TO_NUM } from "../util/constants.js";
 import { NUMBER_INPUT } from "../action/numberButtonAction.js";
 
 class SelectView {
@@ -48,24 +43,18 @@ class SelectView {
       case NUMBER_BUTTON_ID.CANCEL:
         return STR_TO_NUM[`${NUMBER_BUTTON_ID.CANCEL}`];
       default:
-        return;
     }
   }
 
   numberButtonClickHandler(event) {
     const { target } = event;
-
     const buttonWorth = this.getRightfulButtonWorth(target.id);
 
     if (buttonWorth === undefined) {
       return;
     }
 
-    if (!this.vendingMachineModel.hasSelectedNumberReachedLimit()) {
-      this.vendingMachineModel.dispatch.call(this.vendingMachineModel, [
-        { type: NUMBER_INPUT, payload: buttonWorth }
-      ]);
-    }
+    this.vendingMachineModel.dispatch.call(this.vendingMachineModel, [{ type: NUMBER_INPUT, payload: buttonWorth }]);
   }
 
   addEvents() {
@@ -79,7 +68,6 @@ class SelectView {
   render(data) {
     const sum = calculateCoinSum(data);
     const { logs, selectedNumber } = data;
-
     console.log(selectedNumber);
     this.removeEvents();
     this.target.innerHTML = `<div class="price-window"><b class="price-input">${sum}</b></div>
@@ -94,13 +82,9 @@ class SelectView {
           <li><button id=${NUMBER_BUTTON_ID.SEVEN}>7</button></li>
           <li><button id=${NUMBER_BUTTON_ID.EIGHT}>8</button></li>
           <li><button id=${NUMBER_BUTTON_ID.NINE}>9</button></li>
-          <li><button class="command" id=${
-            NUMBER_BUTTON_ID.CANCEL
-          }>취소</button></li>
+          <li><button class="command" id=${NUMBER_BUTTON_ID.CANCEL}>취소</button></li>
           <li><button id=${NUMBER_BUTTON_ID.ZERO}>0</button></li>
-          <li><button class="command" id=${
-            NUMBER_BUTTON_ID.SUBMIT
-          }>입력</button></li>
+          <li><button class="command" id=${NUMBER_BUTTON_ID.SUBMIT}>입력</button></li>
         </ul>
       </div>
       <div class="message-window">
