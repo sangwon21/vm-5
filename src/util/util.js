@@ -2,15 +2,7 @@ export const EW = target => document.querySelector(target);
 export const EWA = target => document.querySelectorAll(target);
 
 export const calculateCoinSum = data => {
-  const {
-    ten,
-    fifty,
-    hundred,
-    fiveHundred,
-    thousand,
-    fiveThousand,
-    tenThousand
-  } = data;
+  const { ten, fifty, hundred, fiveHundred, thousand, fiveThousand, tenThousand } = data;
 
   const sum =
     (ten ? ten * 10 : 0) +

@@ -14,10 +14,7 @@ class ProductView {
 
     const liHtml = MockItemData.reduce((liChunk, item) => {
       const { id, name, price, icon } = item;
-      let li =
-        sum < price
-          ? `<li class="product-item">`
-          : `<li class="product-item selected">`;
+      let li = sum < price ? `<li class="product-item">` : `<li class="product-item selected">`;
       li += `<span class="item-index">${id}</span><div class="item-name">${icon}</div><span class="item-price">${price}</span></li>`;
       liChunk += li;
       return liChunk;

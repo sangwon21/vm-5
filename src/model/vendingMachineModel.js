@@ -1,11 +1,8 @@
 import Model from "./model.js";
 import { INCREASE_COIN } from "../action/coinAction.js";
 import { NUMBER_INPUT } from "../action/numberButtonAction.js";
-import {
-  LOG_MESSAGE,
-  SELECTED_NUMBER_MAX_LENGTH,
-  NUM_TO_STR
-} from "../util/constants.js";
+import { LOG_MESSAGE, SELECTED_NUMBER_MAX_LENGTH, NUM_TO_STR, STR_TO_NUM } from "../util/constants.js";
+import MockItemData from "../util/mockItemData.js";
 
 class VendingMachineModel extends Model {
   constructor() {
@@ -19,7 +16,7 @@ class VendingMachineModel extends Model {
       fiveThousand: 0,
       tenThousand: 0,
       logs: [],
-      selectedNumber: ""
+      selectedNumber: "",
     };
   }
 
@@ -29,6 +26,10 @@ class VendingMachineModel extends Model {
 
   hasSelectedNumberReachedLimit() {
     return this.state.selectedNumber.length >= SELECTED_NUMBER_MAX_LENGTH;
+  }
+
+  hasProperSelectedNumber(num) {
+    return MockItemData.some(data => data.id === num);
   }
 
   findTargetNameAndLog(targetNumber) {
@@ -43,23 +44,39 @@ class VendingMachineModel extends Model {
     }
     const [action] = userAction;
     const { type, payload } = action;
-
     switch (type) {
       case INCREASE_COIN:
-        const [targetPropertyName, logMessage] = this.findTargetNameAndLog(
-          payload
-        );
+        const [targetPropertyName, logMessage] = this.findTargetNameAndLog(payload);
         this.state = {
           ...this.state,
-          logs: [...this.state.logs, logMessage]
+          logs: [...this.state.logs, logMessage],
         };
-        this.state[`${targetPropertyName}`] =
-          this.state[`${targetPropertyName}`] + 1;
+        this.state[`${targetPropertyName}`] = this.state[`${targetPropertyName}`] + 1;
         break;
       case NUMBER_INPUT:
+        if (payload === STR_TO_NUM.submit) {
+          const selectedNumber = "";
+          let logMessage = "";
+          if (!this.hasProperSelectedNumber(parseInt(this.state.selectedNumber))) {
+            logMessage = LOG_MESSAGE.notRightIndex;
+          } else {
+            const selectedItem = MockItemData[parseInt(this.state.selectedNumber) - 1];
+            logMessage = LOG_MESSAGE.purchase(selectedItem.name);
+          }
+          this.state = { ...this.state, selectedNumber, logs: [...this.state.logs, logMessage] };
+          break;
+        }
+
+        if (payload === STR_TO_NUM.cancel) {
+          const selectedNumber = "";
+          const logMessage = LOG_MESSAGE.cancel;
+          this.state = { ...this.state, selectedNumber, logs: [...this.state.logs, logMessage] };
+          break;
+        }
+
         this.state = {
           ...this.state,
-          selectedNumber: this.state.selectedNumber + payload
+          selectedNumber: this.state.selectedNumber + payload,
         };
         break;
       default:
