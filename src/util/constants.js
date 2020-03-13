@@ -41,16 +41,17 @@ export const NUM_TO_STR = {
 };
 
 export const LOG_MESSAGE = {
-  ten: "10원을 투입했습니다.",
-  fifty: "50원을 투입했습니다.",
-  hundred: "100원을 투입했습니다.",
-  fiveHundred: "500원을 투입했습니다.",
-  thousand: "1000원을 투입했습니다.",
-  fiveThousand: "5000원을 투입했습니다.",
-  tenThousand: "10000원을 투입했습니다.",
-  notRightIndex: "올바른 상품 번호를 입력해주세요",
-  purchase: target => `${target}을(를) 선택하셨습니다`,
-  cancel: "입력을 취소하셨습니다.",
+  ten: "- 10원을 투입했습니다.",
+  fifty: "- 50원을 투입했습니다.",
+  hundred: "- 100원을 투입했습니다.",
+  fiveHundred: "- 500원을 투입했습니다.",
+  thousand: "- 1000원을 투입했습니다.",
+  fiveThousand: "- 5000원을 투입했습니다.",
+  tenThousand: "- 10000원을 투입했습니다.",
+  notRightIndex: "- 올바른 상품 번호를 입력해주세요.",
+  purchase: target => `- ${target}을(를) 구매했습니다.`,
+  notEnoughMoney: target => `- 금액이 부족합니다. ${target}원이 있어야 구매가 가능합니다.`,
+  cancel: "- 입력을 취소했습니다.",
 };
 
 export const MESSAGE_BOX_CLASS = "message";

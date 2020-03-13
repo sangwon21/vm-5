@@ -1,6 +1,7 @@
 import Model from "./model.js";
 import { INCREASE_COIN } from "../action/coinAction.js";
 import { NUMBER_INPUT } from "../action/numberButtonAction.js";
+import { calculateCoinSum } from "../util/util.js";
 import { LOG_MESSAGE, SELECTED_NUMBER_MAX_LENGTH, NUM_TO_STR, STR_TO_NUM } from "../util/constants.js";
 import MockItemData from "../util/mockItemData.js";
 
@@ -32,6 +33,10 @@ class VendingMachineModel extends Model {
     return MockItemData.some(data => data.id === num);
   }
 
+  hasEnoughMoney(item, money) {
+    return item.price <= money;
+  }
+
   findTargetNameAndLog(targetNumber) {
     const rightFulString = NUM_TO_STR[`${targetNumber}`];
     return [rightFulString, LOG_MESSAGE[`${rightFulString}`]];
@@ -61,7 +66,11 @@ class VendingMachineModel extends Model {
             logMessage = LOG_MESSAGE.notRightIndex;
           } else {
             const selectedItem = MockItemData[parseInt(this.state.selectedNumber) - 1];
-            logMessage = LOG_MESSAGE.purchase(selectedItem.name);
+            if (!this.hasEnoughMoney(selectedItem, calculateCoinSum(this.state))) {
+              logMessage = LOG_MESSAGE.notEnoughMoney(selectedItem.price);
+            } else {
+              logMessage = LOG_MESSAGE.purchase(selectedItem.name);
+            }
           }
           this.state = { ...this.state, selectedNumber, logs: [...this.state.logs, logMessage] };
           break;

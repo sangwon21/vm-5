@@ -30,7 +30,6 @@ class WalletView {
       case BUTTON_ID.TEN_THOUSAND_WON:
         return STR_TO_NUM.tenThousand;
       default:
-        return;
     }
   }
 
@@ -42,12 +41,8 @@ class WalletView {
     }
 
     if (!this.walletModel.isCoinCountZero(coinWorth)) {
-      this.walletModel.dispatch.call(this.walletModel, [
-        { type: DECREASE_COIN, payload: coinWorth }
-      ]);
-      this.vendingMachineModel.dispatch.call(this.vendingMachineModel, [
-        { type: INCREASE_COIN, payload: coinWorth }
-      ]);
+      this.walletModel.dispatch.call(this.walletModel, [{ type: DECREASE_COIN, payload: coinWorth }]);
+      this.vendingMachineModel.dispatch.call(this.vendingMachineModel, [{ type: INCREASE_COIN, payload: coinWorth }]);
     }
   }
 
@@ -60,15 +55,7 @@ class WalletView {
   }
 
   render(data) {
-    const {
-      ten,
-      fifty,
-      hundred,
-      fiveHundred,
-      thousand,
-      fiveThousand,
-      tenThousand
-    } = data;
+    const { ten, fifty, hundred, fiveHundred, thousand, fiveThousand, tenThousand } = data;
     const sum = calculateCoinSum(data);
 
     this.removeEvents();
