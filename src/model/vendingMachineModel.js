@@ -16,7 +16,7 @@ class VendingMachineModel extends Model {
       thousand: 0,
       fiveThousand: 0,
       tenThousand: 0,
-      logs: [],
+      logs: [LOG_MESSAGE.startMessage],
       selectedNumber: "",
     };
   }
