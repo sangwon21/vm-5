@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/codesquad-memeber-2020/vm-5#readme",
   "dependencies": {
+    "node-fetch": "^2.6.0",
     "node-sass": "^4.13.1"
   },
   "devDependencies": {
