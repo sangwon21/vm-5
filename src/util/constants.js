@@ -5,7 +5,7 @@ export const BUTTON_ID = {
   FIVE_HUNDRED_WON: "five-hundred-won",
   THOUSAND_WON: "thousand-won",
   FIVE_THOUSAND_WON: "five-thousand-won",
-  TEN_THOUSAND_WON: "ten-thousand-won",
+  TEN_THOUSAND_WON: "ten-thousand-won"
 };
 
 export const STR_TO_NUM = {
@@ -27,7 +27,7 @@ export const STR_TO_NUM = {
   fiveHundred: 500,
   thousand: 1000,
   fiveThousand: 5000,
-  tenThousand: 10000,
+  tenThousand: 10000
 };
 
 export const NUM_TO_STR = {
@@ -37,7 +37,7 @@ export const NUM_TO_STR = {
   500: "fiveHundred",
   1000: "thousand",
   5000: "fiveThousand",
-  10000: "tenThousand",
+  10000: "tenThousand"
 };
 
 export const LOG_MESSAGE = {
@@ -50,9 +50,10 @@ export const LOG_MESSAGE = {
   tenThousand: "- 10000원을 투입했습니다.",
   notRightIndex: "- 올바른 상품 번호를 입력해주세요.",
   purchase: target => `- ${target}을(를) 구매했습니다.`,
-  notEnoughMoney: target => `- 금액이 부족합니다. ${target}원이 있어야 구매가 가능합니다.`,
+  notEnoughMoney: target =>
+    `- 금액이 부족합니다. ${target}원이 있어야 구매가 가능합니다.`,
   cancel: "- 입력을 취소했습니다.",
-  startMessage: "- 자판기 구동을 시작합니다.",
+  startMessage: "- 자판기 구동을 시작합니다."
 };
 
 export const MESSAGE_BOX_CLASS = "message";
@@ -71,7 +72,17 @@ export const NUMBER_BUTTON_ID = {
   NINE: "nine",
   ZERO: "zero",
   CANCEL: "cancel",
-  SUBMIT: "submit",
+  SUBMIT: "submit"
 };
 
 export const SELECTED_NUMBER_MAX_LENGTH = 2;
+
+export const CHANGES_CALCULATE_ORDER_LIST = [
+  [STR_TO_NUM.tenThousand, NUM_TO_STR[10000]],
+  [STR_TO_NUM.fiveThousand, NUM_TO_STR[5000]],
+  [STR_TO_NUM.thousand, NUM_TO_STR[1000]],
+  [STR_TO_NUM.fiveHundred, NUM_TO_STR[500]],
+  [STR_TO_NUM.hundred, NUM_TO_STR[100]],
+  [STR_TO_NUM.fifty, NUM_TO_STR[50]],
+  [STR_TO_NUM.ten, NUM_TO_STR[10]]
+];
