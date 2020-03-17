@@ -82,6 +82,7 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: all 0.3s ease;
         color: $grey-shadow;
         background-color: $grey;
         border-radius: 0.75rem;
@@ -104,11 +105,24 @@ body {
     flex-direction: column;
     .price-window {
       display: flex;
-      padding: $default-gap 0;
-      margin-bottom: 0.5rem;
+      padding: $default-gap 0.5rem;
+      margin-bottom: 1rem;
       height: 1rem;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
+      .select-number {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-x: hidden;
+        border-radius: 4px;
+        background-color: $white;
+        color: $black;
+        font-size: 1.5rem;
+        width: 40px;
+        height: 35px;
+      }
       .price-input {
         font-size: 2rem;
         color: $white;
@@ -148,8 +162,8 @@ body {
       }
     }
     .message-window {
-      font-size: $small-font-size;
       width: 200px;
+      font-size: $small-font-size;
       border-radius: 4px;
       padding: 0.75rem;
       margin-top: 1rem;
@@ -173,7 +187,7 @@ body {
     flex-direction: column;
     background-color: $black;
     border-radius: 8px;
-    padding: $default-gap 1.5rem;
+    padding: 1.5rem;
     margin-left: $default-gap;
     ul {
       display: grid;
