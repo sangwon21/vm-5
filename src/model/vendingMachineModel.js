@@ -2,8 +2,9 @@ import Model from "./model.js";
 import { INCREASE_COIN } from "../action/coinAction.js";
 import { NUMBER_INPUT } from "../action/numberButtonAction.js";
 import { calculateCoinSum } from "../util/util.js";
-import { LOG_MESSAGE, SELECTED_NUMBER_MAX_LENGTH, NUM_TO_STR, STR_TO_NUM } from "../util/constants.js";
+import { LOG_MESSAGE, SELECTED_NUMBER_MAX_LENGTH, NUM_TO_STR, STR_TO_NUM, TIMER_SEC } from "../util/constants.js";
 import MockItemData from "../util/mockItemData.js";
+import { GIVE_CHANGES } from "../action/changeAction.js";
 
 class VendingMachineModel extends Model {
   constructor(changeModel) {
@@ -20,6 +21,7 @@ class VendingMachineModel extends Model {
       selectedNumber: "",
     };
     this.changeModel = changeModel;
+    this.timer = null;
   }
 
   hasSelectedNumber() {
@@ -54,6 +56,29 @@ class VendingMachineModel extends Model {
     return LOG_MESSAGE.purchase(selectedItem.name);
   }
 
+  getBackChangeAfterTimer() {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      const change = { ...this.state };
+      delete change.logs;
+      delete change.selectedNumber;
+
+      this.changeModel.dispatch([{ type: GIVE_CHANGES, payload: change }]);
+      this.state = {
+        ...this.state,
+        ten: 0,
+        fifty: 0,
+        hundred: 0,
+        fiveHundred: 0,
+        thousand: 0,
+        fiveThousand: 0,
+        tenThousand: 0,
+        logs: [...this.state.logs, LOG_MESSAGE.timeout(TIMER_SEC)],
+      };
+      this.notify.call(this, [this.state]);
+    }, TIMER_SEC * 1000);
+  }
+
   dispatch(userAction) {
     if (!Array.isArray(userAction)) {
       this.notify.call(this, [this.state]);
@@ -69,14 +94,19 @@ class VendingMachineModel extends Model {
           logs: [...this.state.logs, logMessage],
         };
         this.state[`${targetPropertyName}`] = this.state[`${targetPropertyName}`] + 1;
+        this.getBackChangeAfterTimer();
         break;
 
       case NUMBER_INPUT:
         if (payload === STR_TO_NUM.submit || payload === STR_TO_NUM.cancel) {
           const selectedNumber = "";
           let logMessage = "";
-          if (payload === STR_TO_NUM.submit) logMessage = this.selectSubmitLogMessage();
-          else if (payload === STR_TO_NUM.cancel) logMessage = LOG_MESSAGE.cancel;
+          if (payload === STR_TO_NUM.submit) {
+            logMessage = this.selectSubmitLogMessage();
+          }
+          if (payload === STR_TO_NUM.cancel) {
+            logMessage = LOG_MESSAGE.cancel;
+          }
           this.state = { ...this.state, selectedNumber, logs: [...this.state.logs, logMessage] };
         } else if (!this.hasSelectedNumberReachedLimit()) {
           this.state = {
