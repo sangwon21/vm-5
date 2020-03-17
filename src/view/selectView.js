@@ -68,9 +68,8 @@ class SelectView {
   render(data) {
     const sum = calculateCoinSum(data);
     const { logs, selectedNumber } = data;
-    console.log(selectedNumber);
     this.removeEvents();
-    this.target.innerHTML = `<div class="price-window"><b class="price-input">${sum}</b></div>
+    this.target.innerHTML = `<div class="price-window"><div class="select-number">${selectedNumber}</div><b class="price-input">${sum}</b></div>
       <div class="select-button-wrap">
         <ul class="select-button-list">
           <li><button id=${NUMBER_BUTTON_ID.ONE}>1</button></li>

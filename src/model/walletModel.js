@@ -28,10 +28,9 @@ class WalletModel extends Model {
     const [action] = userAction;
     const { type, payload } = action;
 
-    const targetPropertyName = NUM_TO_STR[`${payload}`];
-
     switch (type) {
       case DECREASE_COIN:
+        const targetPropertyName = NUM_TO_STR[`${payload}`];
         this.state = {
           ...this.state
         };

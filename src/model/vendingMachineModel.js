@@ -6,7 +6,7 @@ import { LOG_MESSAGE, SELECTED_NUMBER_MAX_LENGTH, NUM_TO_STR, STR_TO_NUM } from 
 import MockItemData from "../util/mockItemData.js";
 
 class VendingMachineModel extends Model {
-  constructor() {
+  constructor(changeModel) {
     super();
     this.state = {
       ten: 0,
@@ -16,9 +16,10 @@ class VendingMachineModel extends Model {
       thousand: 0,
       fiveThousand: 0,
       tenThousand: 0,
-      logs: [],
+      logs: [LOG_MESSAGE.startMessage],
       selectedNumber: "",
     };
+    this.changeModel = changeModel;
   }
 
   hasSelectedNumber() {
@@ -42,6 +43,17 @@ class VendingMachineModel extends Model {
     return [rightFulString, LOG_MESSAGE[`${rightFulString}`]];
   }
 
+  selectSubmitLogMessage() {
+    if (!this.hasProperSelectedNumber(parseInt(this.state.selectedNumber))) {
+      return LOG_MESSAGE.notRightIndex;
+    }
+    const selectedItem = MockItemData[parseInt(this.state.selectedNumber) - 1];
+    if (!this.hasEnoughMoney(selectedItem, calculateCoinSum(this.state))) {
+      return LOG_MESSAGE.notEnoughMoney(selectedItem.price);
+    }
+    return LOG_MESSAGE.purchase(selectedItem.name);
+  }
+
   dispatch(userAction) {
     if (!Array.isArray(userAction)) {
       this.notify.call(this, [this.state]);
@@ -58,36 +70,22 @@ class VendingMachineModel extends Model {
         };
         this.state[`${targetPropertyName}`] = this.state[`${targetPropertyName}`] + 1;
         break;
+
       case NUMBER_INPUT:
-        if (payload === STR_TO_NUM.submit) {
+        if (payload === STR_TO_NUM.submit || payload === STR_TO_NUM.cancel) {
           const selectedNumber = "";
           let logMessage = "";
-          if (!this.hasProperSelectedNumber(parseInt(this.state.selectedNumber))) {
-            logMessage = LOG_MESSAGE.notRightIndex;
-          } else {
-            const selectedItem = MockItemData[parseInt(this.state.selectedNumber) - 1];
-            if (!this.hasEnoughMoney(selectedItem, calculateCoinSum(this.state))) {
-              logMessage = LOG_MESSAGE.notEnoughMoney(selectedItem.price);
-            } else {
-              logMessage = LOG_MESSAGE.purchase(selectedItem.name);
-            }
-          }
+          if (payload === STR_TO_NUM.submit) logMessage = this.selectSubmitLogMessage();
+          else if (payload === STR_TO_NUM.cancel) logMessage = LOG_MESSAGE.cancel;
           this.state = { ...this.state, selectedNumber, logs: [...this.state.logs, logMessage] };
-          break;
+        } else if (!this.hasSelectedNumberReachedLimit()) {
+          this.state = {
+            ...this.state,
+            selectedNumber: this.state.selectedNumber + payload,
+          };
         }
-
-        if (payload === STR_TO_NUM.cancel) {
-          const selectedNumber = "";
-          const logMessage = LOG_MESSAGE.cancel;
-          this.state = { ...this.state, selectedNumber, logs: [...this.state.logs, logMessage] };
-          break;
-        }
-
-        this.state = {
-          ...this.state,
-          selectedNumber: this.state.selectedNumber + payload,
-        };
         break;
+
       default:
         break;
     }
