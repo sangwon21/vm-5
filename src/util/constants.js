@@ -52,6 +52,7 @@ export const LOG_MESSAGE = {
   purchase: target => `- ${target}을(를) 구매했습니다.`,
   notEnoughMoney: target => `- 금액이 부족합니다. ${target}원이 있어야 구매가 가능합니다.`,
   cancel: "- 입력을 취소했습니다.",
+  startMessage: "- 자판기 구동을 시작합니다.",
 };
 
 export const MESSAGE_BOX_CLASS = "message";
