@@ -9,17 +9,30 @@ class ProductView {
     this.vendingMachineModel.subscribe(this.render);
   }
 
+  toogleSelectedProduct(sum) {
+    const productElements = this.target.firstElementChild.children;
+    const selectedClassName = "selected";
+    Array.prototype.forEach.call(productElements, element => {
+      const elementPrice = element.lastElementChild.innerHTML;
+      if (elementPrice < sum) {
+        element.classList.add(selectedClassName);
+      } else element.classList.remove(selectedClassName);
+    });
+  }
+
   render(data) {
     const sum = calculateCoinSum(data);
-
+    if (sum !== 0) {
+      this.toogleSelectedProduct(sum);
+      return;
+    }
     const liHtml = MockItemData.reduce((liChunk, item) => {
       const { id, name, price, icon } = item;
-      let li = sum < price ? `<li class="product-item">` : `<li class="product-item selected">`;
+      let li = `<li class="product-item">`;
       li += `<span class="item-index">${id}</span><div class="item-name">${icon}</div><span class="item-price">${price}</span></li>`;
       liChunk += li;
       return liChunk;
     }, "");
-
     this.target.innerHTML = `<ul class="product-list">
       ${liHtml}
     </ul>`;
