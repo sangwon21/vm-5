@@ -6,7 +6,7 @@ import { LOG_MESSAGE, SELECTED_NUMBER_MAX_LENGTH, NUM_TO_STR, STR_TO_NUM } from 
 import MockItemData from "../util/mockItemData.js";
 
 class VendingMachineModel extends Model {
-  constructor() {
+  constructor(changeModel) {
     super();
     this.state = {
       ten: 0,
@@ -19,6 +19,7 @@ class VendingMachineModel extends Model {
       logs: [],
       selectedNumber: "",
     };
+    this.changeModel = changeModel;
   }
 
   hasSelectedNumber() {
