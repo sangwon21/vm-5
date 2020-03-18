@@ -1,3 +1,5 @@
+import { CHANGES_CALCULATE_ORDER_LIST } from "./constants.js";
+
 /**
  * document.querySelector를 프로젝트 내에서 짧게 활용하기 위해서 함수를 제작했습니다.
  * @param {string} target target에 해당하는 DOM Element를 반환합니다.
@@ -36,4 +38,31 @@ export const calculateCoinSum = data => {
     (tenThousand ? tenThousand * 10000 : 0);
 
   return sum;
+};
+
+export const calculateChanges = (inputCoins, beveragePrice) => {
+  const changeCoins = { ...inputCoins };
+  let beverageChange = beveragePrice;
+
+  for (const [value, str] of CHANGES_CALCULATE_ORDER_LIST) {
+    if (beverageChange < 0) {
+      break;
+    }
+    beverageChange -= value * changeCoins[`${str}`];
+    changeCoins[`${str}`] = 0;
+  }
+
+  if (beverageChange < 0) {
+    beverageChange = beverageChange * -1;
+    while (beverageChange > 0) {
+      for (const [value, str] of CHANGES_CALCULATE_ORDER_LIST) {
+        if (beverageChange >= value) {
+          beverageChange -= parseInt(value);
+          changeCoins[`${str}`] += 1;
+          break;
+        }
+      }
+    }
+  }
+  return changeCoins;
 };

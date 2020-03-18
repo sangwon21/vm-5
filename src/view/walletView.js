@@ -48,10 +48,7 @@ class WalletView {
   buttonClickHandler(event) {
     const { target } = event;
     const coinWorth = this.getRightfulCoinWorth(target.id);
-    if (!coinWorth) {
-      return;
-    }
-
+    if (!coinWorth) return;
     if (!this.walletModel.isCoinCountZero(coinWorth)) {
       this.walletModel.dispatch.call(this.walletModel, [
         { type: DECREASE_COIN, payload: coinWorth }

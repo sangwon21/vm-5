@@ -11,6 +11,7 @@ class ProductView {
     this.vendingMachineModel = vendingMachineModel;
     this.render = this.render.bind(this);
     this.vendingMachineModel.subscribe(this.render);
+    this.hasRendered = false;
   }
 
   toogleSelectedProduct(sum) {
@@ -30,10 +31,11 @@ class ProductView {
    */
   render(data) {
     const sum = calculateCoinSum(data);
-    if (sum !== 0) {
+    if (this.hasRendered) {
       this.toogleSelectedProduct(sum);
       return;
     }
+    this.hasRendered = true;
     const liHtml = MockItemData.reduce((liChunk, item) => {
       const { id, name, price, icon } = item;
       let li = `<li class="product-item">`;

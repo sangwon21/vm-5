@@ -6,9 +6,11 @@ import {
   LOG_MESSAGE,
   SELECTED_NUMBER_MAX_LENGTH,
   NUM_TO_STR,
-  STR_TO_NUM
+  STR_TO_NUM,
+  TIMER_SEC
 } from "../util/constants.js";
 import MockItemData from "../util/mockItemData.js";
+import { GIVE_CHANGES } from "../action/changeAction.js";
 
 /**
  * @classdesc VendingMachineModel 자판기에서 사용하는 데이터를 모아놓은 모델 Class입니다.
@@ -30,6 +32,7 @@ class VendingMachineModel extends Model {
       selectedNumber: ""
     };
     this.changeModel = changeModel;
+    this.timer = null;
   }
 
   /**
@@ -70,6 +73,29 @@ class VendingMachineModel extends Model {
     return LOG_MESSAGE.purchase(selectedItem.name);
   }
 
+  getBackChangeAfterTimer() {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      const change = { ...this.state };
+      delete change.logs;
+      delete change.selectedNumber;
+
+      this.changeModel.dispatch([{ type: GIVE_CHANGES, payload: change }]);
+      this.state = {
+        ...this.state,
+        ten: 0,
+        fifty: 0,
+        hundred: 0,
+        fiveHundred: 0,
+        thousand: 0,
+        fiveThousand: 0,
+        tenThousand: 0,
+        logs: [...this.state.logs, LOG_MESSAGE.timeout(TIMER_SEC)]
+      };
+      this.notify.call(this, [this.state]);
+    }, TIMER_SEC * 1000);
+  }
+
   /**
    * @desc 데이터를 변경 후, 구독자에게 데이터의 변경을 알려줍니다.
    * @param {Array} userAction 특정 행동을 정의한 Action을 인자로 받습니다.
@@ -92,16 +118,19 @@ class VendingMachineModel extends Model {
         };
         this.state[`${targetPropertyName}`] =
           this.state[`${targetPropertyName}`] + 1;
+        this.getBackChangeAfterTimer();
         break;
 
       case NUMBER_INPUT:
         if (payload === STR_TO_NUM.submit || payload === STR_TO_NUM.cancel) {
           const selectedNumber = "";
           let logMessage = "";
-          if (payload === STR_TO_NUM.submit)
+          if (payload === STR_TO_NUM.submit) {
             logMessage = this.selectSubmitLogMessage();
-          else if (payload === STR_TO_NUM.cancel)
+          }
+          if (payload === STR_TO_NUM.cancel) {
             logMessage = LOG_MESSAGE.cancel;
+          }
           this.state = {
             ...this.state,
             selectedNumber,
