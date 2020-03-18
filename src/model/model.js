@@ -21,9 +21,7 @@ class Model {
    * @param {function} callback 구독을 끊기 원하는 함수를 인자로 받습니다.
    */
   unsubscribe(callback) {
-    this.models = [...this.models].filter(
-      subscriber => subscriber !== callback
-    );
+    this.models = [...this.models].filter(subscriber => subscriber !== callback);
   }
 
   /**

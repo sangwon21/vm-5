@@ -21,15 +21,7 @@ export const EWA = target => document.querySelectorAll(target);
  * @return 동전의 총합을 반환합니다.
  */
 export const calculateCoinSum = data => {
-  const {
-    ten,
-    fifty,
-    hundred,
-    fiveHundred,
-    thousand,
-    fiveThousand,
-    tenThousand
-  } = data;
+  const { ten, fifty, hundred, fiveHundred, thousand, fiveThousand, tenThousand } = data;
 
   const sum =
     (ten ? ten * 10 : 0) +
@@ -63,7 +55,7 @@ export const calculateChanges = (inputCoins, beveragePrice) => {
   }
 
   if (beverageChange < 0) {
-    beverageChange = beverageChange * -1;
+    beverageChange *= -1;
     while (beverageChange > 0) {
       for (const [value, str] of CHANGES_CALCULATE_ORDER_LIST) {
         if (beverageChange >= value) {

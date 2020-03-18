@@ -19,7 +19,7 @@ class ProductView {
     const selectedClassName = "selected";
     Array.prototype.forEach.call(productElements, element => {
       const elementPrice = element.lastElementChild.innerHTML;
-      if (elementPrice < sum) {
+      if (elementPrice <= sum) {
         element.classList.add(selectedClassName);
       } else element.classList.remove(selectedClassName);
     });
