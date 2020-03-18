@@ -2,6 +2,10 @@ import { INCREASE_COIN, DECREASE_COIN } from "../action/coinAction.js";
 import { calculateCoinSum } from "../util/util.js";
 import { BUTTON_ID, STR_TO_NUM } from "../util/constants.js";
 
+/**
+ * @classdesc WalletView 사용자가 가지고 있는 동전의 개수를 보여주는 class입니다.
+ * @class WalletView
+ */
 class WalletView {
   constructor(target, vendingMachineModel, walletModel) {
     this.target = target;
@@ -13,6 +17,11 @@ class WalletView {
     this.walletModel.dispatch({});
   }
 
+  /**
+   *
+   * @param {string} id event(사용자가 숫자를 클릭하는 이벤트)가 발생한 부분의 id를 인자로 받습니다.
+   * @return {number} 인자로 받은 id를 알맞은 숫자로 반환합니다.
+   */
   getRightfulCoinWorth(id) {
     switch (id) {
       case BUTTON_ID.TEN_WON:
@@ -33,6 +42,9 @@ class WalletView {
     }
   }
 
+  /**
+   * @param {Document.event} event 해당 View Class가 렌더링한 부분에서 발생하는 Click Event를 인자로 받습니다.
+   */
   buttonClickHandler(event) {
     const { target } = event;
     const coinWorth = this.getRightfulCoinWorth(target.id);
@@ -41,21 +53,43 @@ class WalletView {
     }
 
     if (!this.walletModel.isCoinCountZero(coinWorth)) {
-      this.walletModel.dispatch.call(this.walletModel, [{ type: DECREASE_COIN, payload: coinWorth }]);
-      this.vendingMachineModel.dispatch.call(this.vendingMachineModel, [{ type: INCREASE_COIN, payload: coinWorth }]);
+      this.walletModel.dispatch.call(this.walletModel, [
+        { type: DECREASE_COIN, payload: coinWorth }
+      ]);
+      this.vendingMachineModel.dispatch.call(this.vendingMachineModel, [
+        { type: INCREASE_COIN, payload: coinWorth }
+      ]);
     }
   }
 
+  /**
+   * 해당 View Class에 필요한 event를 달아줍니다.
+   */
   addEvents() {
     this.target.addEventListener("click", this.buttonClickHandler);
   }
 
+  /**
+   * 해당 View Class에 필요없는 event를 없애줍니다.
+   */
   removeEvents() {
     this.target.removeEventListener("click", this.buttonClickHandler);
   }
 
+  /**
+   * 화면에 사용자가 가지고 있는 동전 데이터를 렌더링합니다.
+   * @param {Object} data 사용자가 가지고 있는 동전 데이터를 담은 객체를 인자로 받습니다.
+   */
   render(data) {
-    const { ten, fifty, hundred, fiveHundred, thousand, fiveThousand, tenThousand } = data;
+    const {
+      ten,
+      fifty,
+      hundred,
+      fiveHundred,
+      thousand,
+      fiveThousand,
+      tenThousand
+    } = data;
     const sum = calculateCoinSum(data);
 
     this.removeEvents();
