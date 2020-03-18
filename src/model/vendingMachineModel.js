@@ -79,6 +79,35 @@ class VendingMachineModel extends Model {
     }, TIMER_SEC * 1000);
   }
 
+  dispatchTypeIncreaseCoin(payload) {
+    const [targetPropertyName, logMessage] = this.findTargetNameAndLog(payload);
+    this.state = {
+      ...this.state,
+      logs: [...this.state.logs, logMessage],
+    };
+    this.state[`${targetPropertyName}`] = this.state[`${targetPropertyName}`] + 1;
+    this.getBackChangeAfterTimer();
+  }
+
+  dispatchTypeNumberInput(payload) {
+    if (payload === STR_TO_NUM.submit || payload === STR_TO_NUM.cancel) {
+      const selectedNumber = "";
+      let logMessage = "";
+      if (payload === STR_TO_NUM.submit) {
+        logMessage = this.selectSubmitLogMessage();
+      }
+      if (payload === STR_TO_NUM.cancel) {
+        logMessage = LOG_MESSAGE.cancel;
+      }
+      this.state = { ...this.state, selectedNumber, logs: [...this.state.logs, logMessage] };
+    } else if (!this.hasSelectedNumberReachedLimit()) {
+      this.state = {
+        ...this.state,
+        selectedNumber: this.state.selectedNumber + payload,
+      };
+    }
+  }
+
   dispatch(userAction) {
     if (!Array.isArray(userAction)) {
       this.notify.call(this, [this.state]);
@@ -88,34 +117,11 @@ class VendingMachineModel extends Model {
     const { type, payload } = action;
     switch (type) {
       case INCREASE_COIN:
-        const [targetPropertyName, logMessage] = this.findTargetNameAndLog(payload);
-        this.state = {
-          ...this.state,
-          logs: [...this.state.logs, logMessage],
-        };
-        this.state[`${targetPropertyName}`] = this.state[`${targetPropertyName}`] + 1;
-        this.getBackChangeAfterTimer();
+        this.dispatchTypeIncreaseCoin(payload);
         break;
-
       case NUMBER_INPUT:
-        if (payload === STR_TO_NUM.submit || payload === STR_TO_NUM.cancel) {
-          const selectedNumber = "";
-          let logMessage = "";
-          if (payload === STR_TO_NUM.submit) {
-            logMessage = this.selectSubmitLogMessage();
-          }
-          if (payload === STR_TO_NUM.cancel) {
-            logMessage = LOG_MESSAGE.cancel;
-          }
-          this.state = { ...this.state, selectedNumber, logs: [...this.state.logs, logMessage] };
-        } else if (!this.hasSelectedNumberReachedLimit()) {
-          this.state = {
-            ...this.state,
-            selectedNumber: this.state.selectedNumber + payload,
-          };
-        }
+        this.dispatchTypeNumberInput(payload);
         break;
-
       default:
         break;
     }
