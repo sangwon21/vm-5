@@ -4,6 +4,7 @@
   "description": "`Ed/Won` 코드스쿼드 자판기 앱",
   "main": "index.js",
   "scripts": {
+    "document": "npx jsdoc -c jsdoc.json",
     "test": "jest"
   },
   "repository": {
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/codesquad-memeber-2020/vm-5#readme",
   "dependencies": {
+    "docdash": "^1.2.0",
+    "jsdoc": "^3.6.3",
     "node-fetch": "^2.6.0",
     "node-sass": "^4.13.1"
   },
