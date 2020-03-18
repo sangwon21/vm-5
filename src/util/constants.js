@@ -50,8 +50,8 @@ export const LOG_MESSAGE = {
   tenThousand: "- 10000원을 투입했습니다.",
   notRightIndex: "- 올바른 상품 번호를 입력해주세요.",
   purchase: target => `- ${target}을(를) 구매했습니다.`,
-  notEnoughMoney: target =>
-    `- 금액이 부족합니다. ${target}원이 있어야 구매가 가능합니다.`,
+  notEnoughMoney: target => `- 금액이 부족합니다. ${target}원이 있어야 구매가 가능합니다.`,
+  timeout: sec => `- ${sec}초 동안 입력이 없어 금액이 반환되었습니다.`,
   cancel: "- 입력을 취소했습니다.",
   startMessage: "- 자판기 구동을 시작합니다."
 };
@@ -76,6 +76,9 @@ export const NUMBER_BUTTON_ID = {
 };
 
 export const SELECTED_NUMBER_MAX_LENGTH = 2;
+
+
+export const TIMER_SEC = 5;
 
 export const CHANGES_CALCULATE_ORDER_LIST = [
   [STR_TO_NUM.tenThousand, NUM_TO_STR[10000]],

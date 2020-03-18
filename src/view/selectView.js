@@ -49,11 +49,7 @@ class SelectView {
   numberButtonClickHandler(event) {
     const { target } = event;
     const buttonWorth = this.getRightfulButtonWorth(target.id);
-
-    if (buttonWorth === undefined) {
-      return;
-    }
-
+    if (buttonWorth === undefined) return;
     this.vendingMachineModel.dispatch.call(this.vendingMachineModel, [{ type: NUMBER_INPUT, payload: buttonWorth }]);
   }
 

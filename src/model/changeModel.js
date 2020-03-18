@@ -6,15 +6,11 @@ class ChangeModel {
   }
 
   dispatch(userAction) {
-    if (!Array.isArray(userAction)) {
-      this.notify.call(this, [this.state]);
-      return;
-    }
     const [action] = userAction;
     const { type, payload } = action;
     switch (type) {
       case GIVE_CHANGES:
-        this.walletModel.dispatch({ type: GET_BACK_CHANGES, payload });
+        this.walletModel.dispatch.call(this.walletModel, [{ type: GET_BACK_CHANGES, payload }]);
         break;
       default:
         break;
