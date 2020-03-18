@@ -1,3 +1,6 @@
+/**
+ * 프로젝트 내에서 활용하는 동전 button의 id를 담은 객체입니다.
+ */
 export const BUTTON_ID = {
   TEN_WON: "ten-won",
   FIFTY_WON: "fifty-won",
@@ -5,9 +8,12 @@ export const BUTTON_ID = {
   FIVE_HUNDRED_WON: "five-hundred-won",
   THOUSAND_WON: "thousand-won",
   FIVE_THOUSAND_WON: "five-thousand-won",
-  TEN_THOUSAND_WON: "ten-thousand-won",
+  TEN_THOUSAND_WON: "ten-thousand-won"
 };
 
+/**
+ * 프로젝트 내에서 활용하는 숫자 패널들을 실제 숫자 값으로 가지고 있는 객체입니다.
+ */
 export const STR_TO_NUM = {
   cancel: -2,
   submit: -1,
@@ -27,9 +33,12 @@ export const STR_TO_NUM = {
   fiveHundred: 500,
   thousand: 1000,
   fiveThousand: 5000,
-  tenThousand: 10000,
+  tenThousand: 10000
 };
 
+/**
+ * 프로젝트 내에서 활용하는 숫자 패널들을 문자열로 가지고 있는 객체입니다.
+ */
 export const NUM_TO_STR = {
   10: "ten",
   50: "fifty",
@@ -37,9 +46,12 @@ export const NUM_TO_STR = {
   500: "fiveHundred",
   1000: "thousand",
   5000: "fiveThousand",
-  10000: "tenThousand",
+  10000: "tenThousand"
 };
 
+/**
+ * 프로젝트 내에서 활용하는 로그 메시지를 담은 객체입니다.
+ */
 export const LOG_MESSAGE = {
   ten: "- 10원을 투입했습니다.",
   fifty: "- 50원을 투입했습니다.",
@@ -50,15 +62,18 @@ export const LOG_MESSAGE = {
   tenThousand: "- 10000원을 투입했습니다.",
   notRightIndex: "- 올바른 상품 번호를 입력해주세요.",
   purchase: target => `- ${target}을(를) 구매했습니다.`,
-  notEnoughMoney: target => `- 금액이 부족합니다. ${target}원이 있어야 구매가 가능합니다.`,
+  notEnoughMoney: target =>
+    `- 금액이 부족합니다. ${target}원이 있어야 구매가 가능합니다.`,
   cancel: "- 입력을 취소했습니다.",
-  startMessage: "- 자판기 구동을 시작합니다.",
+  startMessage: "- 자판기 구동을 시작합니다."
 };
 
 export const MESSAGE_BOX_CLASS = "message";
 
 export const MAX_MESSAGE_BOX_SCROLL_LENGTH = 1500;
-
+/**
+ * 프로젝트 내에서 활용하는 숫자 패널의 ID를 담은 객체입니다.
+ */
 export const NUMBER_BUTTON_ID = {
   ONE: "one",
   TWO: "two",
@@ -71,7 +86,7 @@ export const NUMBER_BUTTON_ID = {
   NINE: "nine",
   ZERO: "zero",
   CANCEL: "cancel",
-  SUBMIT: "submit",
+  SUBMIT: "submit"
 };
 
 export const SELECTED_NUMBER_MAX_LENGTH = 2;
