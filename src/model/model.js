@@ -9,7 +9,7 @@ class Model {
   }
 
   /**
-   *
+   * 구독자를 등록하는 함수입니다.
    * @param {function} callback 구독자를 인자로 받습니다.
    */
   subscribe(callback) {
@@ -17,7 +17,7 @@ class Model {
   }
 
   /**
-   *
+   * 구독을 취소하는 함수입니다.
    * @param {function} callback 구독을 끊기 원하는 함수를 인자로 받습니다.
    */
   unsubscribe(callback) {
@@ -27,7 +27,7 @@ class Model {
   }
 
   /**
-   *
+   * 구독자에게 특정 행동을 알리는 함수입니다.
    * @param {*} data 구독자에게 넘겨줄 data입니다.
    */
   notify([data]) {

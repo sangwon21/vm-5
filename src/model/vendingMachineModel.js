@@ -36,6 +36,7 @@ class VendingMachineModel extends Model {
   }
 
   /**
+   * 선택된 번호가 있는지 확인하는 함수입니다.
    * @return {boolean} 모델이 보관하고 있는 state 중 선택된 번호(selectedNumber)가 있는지 여부를 확인합니다.
    */
   hasSelectedNumber() {
@@ -43,6 +44,7 @@ class VendingMachineModel extends Model {
   }
 
   /**
+   * 선택된 번호가 2자리를 넘는지 확인하는 함수입니다.
    * @return {boolean} 모델이 보관하고 있는 state 중 선택된 번호(selectedNumber)가 허용된 길이를 초과하는지 확인합니다.
    */
   hasSelectedNumberReachedLimit() {

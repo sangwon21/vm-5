@@ -8,7 +8,7 @@ import {
 import { NUMBER_INPUT } from "../action/numberButtonAction.js";
 
 /**
- * @classdesc SelectView 사용자가 자판기와 interaction하는 결과를 보여주는 class입니다.
+ * @classdesc SelectView 사용자가 자판기와 interaction하는 결과를 보여주는 Class입니다.
  * 사용자는 자신의 선택을 로그(log)처럼 볼 수 있습니다.
  * 사용자가 고른 숫자를 볼 수 있습니다.
  * 사용자가 고른 음료수를 볼 수 있습니다.
@@ -32,7 +32,7 @@ class SelectView {
   }
 
   /**
-   *
+   * 해당 View Class의 button id에 해당하는 숫자값을 찾아 반환합니다.
    * @param {string} id event(사용자가 숫자를 클릭하는 이벤트)가 발생한 부분의 id를 인자로 받습니다.
    * @return {number} 인자로 받은 id를 알맞은 숫자로 반환합니다.
    */
@@ -67,6 +67,7 @@ class SelectView {
   }
 
   /**
+   * 해당 View Class의 button click 이벤트가 발생할 때, 이를 담당하는 Callback 함수입니다.
    * @param {Document.event} event 해당 View Class가 렌더링한 부분에서 발생하는 Click Event를 인자로 받습니다.
    */
   numberButtonClickHandler(event) {

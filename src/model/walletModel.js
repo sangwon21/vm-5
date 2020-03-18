@@ -18,12 +18,12 @@ class WalletModel extends Model {
       fiveHundred: 4,
       thousand: 2,
       fiveThousand: 1,
-      tenThousand: 1,
+      tenThousand: 1
     };
   }
 
   /**
-   *
+   * Coin개수가 0인지 확인하는 함수입니다.
    * @param {number} target 동전의 가치(e.g. 10원 -> 10)를 인자로 받습니다.
    * @return {boolean} target의 동전 개수가 0인지 여부를 반환합니다.
    */
@@ -47,9 +47,10 @@ class WalletModel extends Model {
       case DECREASE_COIN:
         const targetPropertyName = NUM_TO_STR[`${payload}`];
         this.state = {
-          ...this.state,
+          ...this.state
         };
-        this.state[`${targetPropertyName}`] = this.state[`${targetPropertyName}`] - 1;
+        this.state[`${targetPropertyName}`] =
+          this.state[`${targetPropertyName}`] - 1;
         break;
       case GET_BACK_CHANGES:
         this.state = {
@@ -59,7 +60,7 @@ class WalletModel extends Model {
           fiveHundred: this.state.fiveHundred + payload.fiveHundred,
           thousand: this.state.thousand + payload.thousand,
           fiveThousand: this.state.fiveThousand + payload.fiveThousand,
-          tenThousand: this.state.tenThousand + payload.tenThousand,
+          tenThousand: this.state.tenThousand + payload.tenThousand
         };
         break;
       default:

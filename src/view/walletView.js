@@ -3,7 +3,7 @@ import { calculateCoinSum } from "../util/util.js";
 import { BUTTON_ID, STR_TO_NUM } from "../util/constants.js";
 
 /**
- * @classdesc WalletView 사용자가 가지고 있는 동전의 개수를 보여주는 class입니다.
+ * @classdesc WalletView 사용자가 가지고 있는 동전의 개수를 보여주는 Class입니다.
  * @class WalletView
  */
 class WalletView {
@@ -18,8 +18,8 @@ class WalletView {
   }
 
   /**
-   *
-   * @param {string} id event(사용자가 숫자를 클릭하는 이벤트)가 발생한 부분의 id를 인자로 받습니다.
+   * 해당 View Class의 Button id에 해당하는 숫자값을 찾아 반환합니다.
+   * @param {string} id Event(사용자가 숫자를 클릭하는 이벤트)가 발생한 부분의 id를 인자로 받습니다.
    * @return {number} 인자로 받은 id를 알맞은 숫자로 반환합니다.
    */
   getRightfulCoinWorth(id) {
@@ -43,7 +43,8 @@ class WalletView {
   }
 
   /**
-   * @param {Document.event} event 해당 View Class가 렌더링한 부분에서 발생하는 Click Event를 인자로 받습니다.
+   * 해당 View Class의 Button click 이벤트가 발생할 때, 이를 담당하는 Callback 함수입니다.
+   * @param {Document.event} event 해당 View Class가 렌더링한 부분에서 발생하는 click event를 인자로 받습니다.
    */
   buttonClickHandler(event) {
     const { target } = event;
