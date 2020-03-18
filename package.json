@@ -4,7 +4,8 @@
   "description": "`Ed/Won` 코드스쿼드 자판기 앱",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "document": "npx jsdoc -c jsdoc.json"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/codesquad-memeber-2020/vm-5#readme",
   "dependencies": {
+    "docdash": "^1.2.0",
+    "jsdoc": "^3.6.3",
     "node-sass": "^4.13.1"
   }
 }
