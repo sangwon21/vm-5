@@ -1,8 +1,10 @@
 # 웹 자판기 
 
-## [데모 페이지](https://sungikchoi.com/vending-machine/)
+## [데모 페이지](https://codesquad-memeber-2020.github.io/vm-5/)
 
-![screenshot](https://user-images.githubusercontent.com/58209009/76308550-ee55cf80-62c2-11ea-81cd-d8db2ca9ad83.png)
+### 스크린샷
+
+![screenshot](https://user-images.githubusercontent.com/58209009/77041909-a31e7980-69b2-11ea-823a-37ee04dba4d5.png)
 
 ## 마크업 구조
 
@@ -28,6 +30,4 @@
 - SASS 사용해서 스타일 시트 작성 후 `node-sass`를 통해 CSS로 변환
 - `grid`, `flex` 사용
 
-## JavaScript
-
-[문서](https://sungikchoi.com/vending-machine/document/)
+## [JavaScript](https://codesquad-memeber-2020.github.io/vm-5/document/)
