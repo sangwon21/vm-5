@@ -1,6 +1,6 @@
 import MockItemData from "../util/mockItemData.js";
 import { EWA, calculateCoinSum } from "../util/util.js";
-import { LOG_MESSAGE, ANIMATION_DURATION_TIME } from "../util/constants.js";
+import { LOG_MESSAGE, ANIMATION_DURATION_TIME, CLASS_NAME } from "../util/constants.js";
 
 /**
  * @classdesc ProductView 사용자에게 판매하는 데이터를 렌더링하는 Class입니다.
@@ -17,9 +17,9 @@ class ProductView {
   }
 
   toggleSelectedProduct(sum) {
-    const selectedClassName = "selected";
+    const selectedClassName = CLASS_NAME.SELECTED;
     Array.prototype.forEach.call(this.productList, element => {
-      const productPrice = element.querySelector(".item-price");
+      const productPrice = element.querySelector(`.${CLASS_NAME.ITEM_PRICE}`);
       if (productPrice.innerHTML <= sum) {
         element.classList.add(selectedClassName);
       } else element.classList.remove(selectedClassName);
@@ -29,9 +29,9 @@ class ProductView {
   togglePurchasedProduct(data) {
     if (data.selectedNumber !== "") return;
     const purchasedProduct = this.getPurchasedProduct(data);
-    const purchasedClassName = "purchased";
-    for (let index = 0; index < this.productList.length; index += 1) {
-      const productName = this.productList[index].querySelector(".item-name");
+    const purchasedClassName = CLASS_NAME.PURCHASED;
+    for (let index = 0; index < this.productList.length; index++) {
+      const productName = this.productList[index].querySelector(`.${CLASS_NAME.ITEM_NAME}`);
       if (productName.innerHTML === purchasedProduct) {
         this.productList[index].classList.add(purchasedClassName);
         setTimeout(() => {
@@ -44,7 +44,7 @@ class ProductView {
 
   getPurchasedProduct(data) {
     const latestLog = data.logs[data.logs.length - 1];
-    for (let index = 0; index < MockItemData.length; index += 1) {
+    for (let index = 0; index < MockItemData.length; index++) {
       if (latestLog === LOG_MESSAGE.purchase(MockItemData[index].name)) return MockItemData[index].icon;
     }
     return "";
@@ -72,7 +72,7 @@ class ProductView {
     this.target.innerHTML = `<ul class="product-list">
       ${liHtml}
     </ul>`;
-    this.productList = EWA(".product-item");
+    this.productList = EWA(`.${CLASS_NAME.ITEM_LIST}`);
   }
 }
 

@@ -103,6 +103,14 @@ export const NUMBER_BUTTON_ID = {
   SUBMIT: "submit",
 };
 
+export const CLASS_NAME = {
+  ITEM_LIST: "product-item",
+  ITEM_PRICE: "item-price",
+  ITEM_NAME: "item-name",
+  PURCHASED: "purchased",
+  SELECTED: "selected",
+};
+
 export const SELECTED_NUMBER_MAX_LENGTH = 2;
 
 export const TIMER_SEC = 5;
