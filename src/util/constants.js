@@ -103,18 +103,36 @@ export const NUMBER_BUTTON_ID = {
   SUBMIT: "submit",
 };
 
+/**
+ * @enum CLASS_NAME
+ * @desc 프로젝트 내에서 사용하는 HTML Elements의 클래스명을 담은 객체입니다.
+ */
 export const CLASS_NAME = {
-  ITEM_LIST: "product-item",
-  ITEM_PRICE: "item-price",
-  ITEM_NAME: "item-name",
-  PURCHASED: "purchased",
-  SELECTED: "selected",
+  PRODUCT_VIEW: {
+    ITEM_LIST: "product-item",
+    ITEM_PRICE: "item-price",
+    ITEM_NAME: "item-name",
+    PURCHASED: "purchased",
+    SELECTED: "selected",
+  },
 };
 
+/**
+ * @const SELECTED_NUMBER_MAX_LENGTH
+ * @desc 입력할 수 있는 상품 번호의 자릿수를 제한하는 수 입니다.
+ */
 export const SELECTED_NUMBER_MAX_LENGTH = 2;
 
+/**
+ * @const TIMER_SEC
+ * @desc 자판기에 입금 후, 대기하는 시간입니다. 단위는 초 입니다.
+ */
 export const TIMER_SEC = 5;
 
+/**
+ * @const ANIMATION_DURATION_TIME
+ * @desc 물품 구매 시 발생하는 애니메이션 시간입니다. 단위는 초 입니다.
+ */
 export const ANIMATION_DURATION_TIME = 1;
 
 /**
