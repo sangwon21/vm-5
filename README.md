@@ -31,3 +31,6 @@
 - `grid`, `flex` 사용
 
 ## [JavaScript](https://codesquad-memeber-2020.github.io/vm-5/document/)
+
+위의 링크 클릭 시 자바스크립트 코드를 정리해놓은 문서로 이동됩니다.
+
