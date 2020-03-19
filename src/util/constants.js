@@ -1,3 +1,7 @@
+/**
+ * @enum BUTTON_ID
+ * @desc 프로젝트 내에서 활용하는 동전 button의 id를 담은 객체입니다.
+ */
 export const BUTTON_ID = {
   TEN_WON: "ten-won",
   FIFTY_WON: "fifty-won",
@@ -8,6 +12,10 @@ export const BUTTON_ID = {
   TEN_THOUSAND_WON: "ten-thousand-won",
 };
 
+/**
+ * @enum STR_TO_NUM
+ * @desc 프로젝트 내에서 활용하는 숫자 패널들을 실제 숫자 값으로 가지고 있는 객체입니다.
+ */
 export const STR_TO_NUM = {
   cancel: -2,
   submit: -1,
@@ -30,6 +38,10 @@ export const STR_TO_NUM = {
   tenThousand: 10000,
 };
 
+/**
+ * @enum NUM_TO_STR
+ * @desc 프로젝트 내에서 활용하는 숫자 패널들을 문자열로 가지고 있는 객체입니다.
+ */
 export const NUM_TO_STR = {
   10: "ten",
   50: "fifty",
@@ -40,6 +52,10 @@ export const NUM_TO_STR = {
   10000: "tenThousand",
 };
 
+/**
+ * @enum LOG_MESSAGE
+ * @desc 프로젝트 내에서 활용하는 로그 메시지를 담은 객체입니다.
+ */
 export const LOG_MESSAGE = {
   ten: "- 10원을 투입했습니다.",
   fifty: "- 50원을 투입했습니다.",
@@ -51,13 +67,27 @@ export const LOG_MESSAGE = {
   notRightIndex: "- 올바른 상품 번호를 입력해주세요.",
   purchase: target => `- ${target}을(를) 구매했습니다.`,
   notEnoughMoney: target => `- 금액이 부족합니다. ${target}원이 있어야 구매가 가능합니다.`,
+  timeout: sec => `- ${sec}초 동안 입력이 없어 금액이 반환되었습니다.`,
   cancel: "- 입력을 취소했습니다.",
+  startMessage: "- 자판기 구동을 시작합니다.",
 };
 
+/**
+ *  @constant MESSAGE_BOX_CLASS
+ *  @desc 메시지 박스가 가지고 있는 CSS 클래스입니다.
+ */
 export const MESSAGE_BOX_CLASS = "message";
 
+/**
+ * @constant MAX_MESSAGE_BOX_SCROLL_LENGTH
+ * @desc 프로젝트 내에서 사용하는 최대 스크롤 길이입니다.
+ */
 export const MAX_MESSAGE_BOX_SCROLL_LENGTH = 1500;
 
+/**
+ * @enum NUMBER_BUTTON_ID
+ * @desc 프로젝트 내에서 활용하는 숫자 패널의 ID를 담은 객체입니다.
+ */
 export const NUMBER_BUTTON_ID = {
   ONE: "one",
   TWO: "two",
@@ -73,4 +103,48 @@ export const NUMBER_BUTTON_ID = {
   SUBMIT: "submit",
 };
 
+/**
+ * @enum CLASS_NAME
+ * @desc 프로젝트 내에서 사용하는 HTML Elements의 클래스명을 담은 객체입니다.
+ */
+export const CLASS_NAME = {
+  PRODUCT_VIEW: {
+    ITEM_LIST: "product-item",
+    ITEM_PRICE: "item-price",
+    ITEM_NAME: "item-name",
+    PURCHASED: "purchased",
+    SELECTED: "selected",
+  },
+};
+
+/**
+ * @const SELECTED_NUMBER_MAX_LENGTH
+ * @desc 입력할 수 있는 상품 번호의 자릿수를 제한하는 수 입니다.
+ */
 export const SELECTED_NUMBER_MAX_LENGTH = 2;
+
+/**
+ * @const TIMER_SEC
+ * @desc 자판기에 입금 후, 대기하는 시간입니다. 단위는 초 입니다.
+ */
+export const TIMER_SEC = 5;
+
+/**
+ * @const ANIMATION_DURATION_TIME
+ * @desc 물품 구매 시 발생하는 애니메이션 시간입니다. 단위는 초 입니다.
+ */
+export const ANIMATION_DURATION_TIME = 1;
+
+/**
+ * @enum CHANGES_CALCULATE_ORDER_LIST
+ * @desc 프로젝트 내에서 활용하는 동전의 가치와 영문 이름을 담은 배열입니다.
+ */
+export const CHANGES_CALCULATE_ORDER_LIST = [
+  [STR_TO_NUM.tenThousand, NUM_TO_STR[10000]],
+  [STR_TO_NUM.fiveThousand, NUM_TO_STR[5000]],
+  [STR_TO_NUM.thousand, NUM_TO_STR[1000]],
+  [STR_TO_NUM.fiveHundred, NUM_TO_STR[500]],
+  [STR_TO_NUM.hundred, NUM_TO_STR[100]],
+  [STR_TO_NUM.fifty, NUM_TO_STR[50]],
+  [STR_TO_NUM.ten, NUM_TO_STR[10]],
+];
