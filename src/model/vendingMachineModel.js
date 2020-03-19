@@ -45,10 +45,21 @@ class VendingMachineModel extends Model {
     return this.state.selectedNumber.length >= SELECTED_NUMBER_MAX_LENGTH;
   }
 
+  /**
+   * 선택된 번호가 올바른지 판별하는 함수입니다.
+   * @param {number} num 판별하고 싶은 수를 인자로 받습니다.
+   * @return {boolean} 데이터의 id 목록 중에 매개변수로 받은 수와 일치하는 수가 있는지 확인합니다.
+   */
   hasProperSelectedNumber(num) {
     return MockItemData.some(data => data.id === num);
   }
 
+  /**
+   * 특정 물품을 구매하기에 충분한 돈이 있는지 판별하는 함수입니다.
+   * @param {object} item 구매할 물품 객체를 인자로 받습니다.
+   * @param {number} money 투입한 동전의 합을 인자로 받습니다.
+   * @return {boolean} 물품의 가격보다 투입한 금액이 많은지 확인합니다.
+   */
   hasEnoughMoney(item, money) {
     return item.price <= money;
   }
@@ -58,6 +69,12 @@ class VendingMachineModel extends Model {
     return [rightFulString, LOG_MESSAGE[`${rightFulString}`]];
   }
 
+  /**
+   * 입력 버튼 클릭 시 나타날 로그메세지를 선택하는 함수입니다.
+   * @param {number} num 입력한 수를 인자로 받습니다.=
+   * @param {object} item 구매할 물품 객체를 인자로 받습니다.
+   * @return {string} 번호가 인덱스 범위에 포함되지 않으면, 혹은 충분한 돈을 갖고 있지 않으면 해당하는 문자열을 반환합니다. 조건에 모두 부합한다면 물건을 구매하는 함수를 반환합니다. 해당 함수는 구입에 해당하는 문자열을 반환합니다.
+   */
   selectSubmitLogMessage(num, item) {
     if (!this.hasProperSelectedNumber(num)) {
       return LOG_MESSAGE.notRightIndex;
@@ -68,6 +85,9 @@ class VendingMachineModel extends Model {
     return this.purchaseSelectedProduct(item);
   }
 
+  /**
+   * 가지고 있는 프로퍼티 중 금액 관련 프로퍼티만 초기화하는 함수입니다.
+   */
   initializeCoin() {
     return {
       ...this.state,
@@ -81,6 +101,10 @@ class VendingMachineModel extends Model {
     };
   }
 
+  /**
+   * 돌려줄 금액 프로퍼티만 반환하는 함수입니다.
+   * @return {object} 현재 가지고 있는 상태에서 금액 key를 삭제한 다른 key는 삭제한 후 객체를 반환합니다.
+   */
   getChangeFromStatus() {
     const change = { ...this.state };
     delete change.logs;
@@ -88,6 +112,11 @@ class VendingMachineModel extends Model {
     return change;
   }
 
+  /**
+   * 선택한 물품을 구매하는 함수입니다.
+   * @param {object} item 구매할 물품을 인자로 받습니다.
+   * @return {string} 돈을 투입할 때 등록했던 타이머를 초기화하고, 잔돈을 계산 후 잔돈을 changeModel로 전달합니다. 구입 로그 문자열을 반환합니다.
+   */
   purchaseSelectedProduct(item) {
     clearTimeout(this.timer);
     const insertedCoin = this.getChangeFromStatus();
@@ -96,12 +125,21 @@ class VendingMachineModel extends Model {
     return LOG_MESSAGE.purchase(item.name);
   }
 
+  /**
+   * 잔돈을 changeModel로 되돌려주는 함수입니다.
+   * @param {object} change 잔돈 객체를 인자로 받습니다.
+   * 잔돈을 changeModel로 보내주고, 현재 금액을 초기화합니다. 구독자에게 재렌더링을 요청합니다.
+   */
   getBackChange(change) {
     this.changeModel.dispatch([{ type: GIVE_CHANGES, payload: change }]);
     this.state = this.initializeCoin();
     this.notify.call(this, [this.state]);
   }
 
+  /**
+   * 일정 시간이 지난 후 잔돈을 changeModel로 되돌려주는 함수입니다.
+   * 돈을 입금할 때마다 타이머를 초기화하고, 타이머가 다 된다면 getBackChange 함수를 실행하고 시간 초과 로그를 추가합니다.
+   */
   getBackChangeAfterTimer() {
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
@@ -115,6 +153,11 @@ class VendingMachineModel extends Model {
     }, TIMER_SEC * 1000);
   }
 
+  /**
+   * 금액을 투입할 때 실행되는 함수입니다.
+   * @param {object} payload 금액 객체를 인자로 받습니다.
+   * 투입한 금액만큼 금액을 더하고, getBackChangeAfterTimer 함수를 실행합니다.
+   */
   dispatchTypeIncreaseCoin(payload) {
     const [targetPropertyName, logMessage] = this.findTargetNameAndLog(payload);
     this.state = {
@@ -125,6 +168,11 @@ class VendingMachineModel extends Model {
     this.getBackChangeAfterTimer();
   }
 
+  /**
+   * 상품 번호 다이얼을 누를 때 실행되는 함수입니다.
+   * @param {number} payload 눌린 버튼의 id를 인자로 받습니다.
+   * 입력 버튼을 눌렀을 경우, 취소 버튼을 눌렀을 경우, 숫자 버튼을 눌렀을 경우를 판단하여 상태를 변경합니다.
+   */
   dispatchTypeNumberInput(payload) {
     if (payload === STR_TO_NUM.submit || payload === STR_TO_NUM.cancel) {
       const selectedNumber = "";
