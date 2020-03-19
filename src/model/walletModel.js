@@ -31,6 +31,10 @@ class WalletModel extends Model {
     return this.state[NUM_TO_STR[`${target}`]] === 0;
   }
 
+  /**
+   * 잔액을 현재 금액에 더하는 함수입니다.
+   * @param {object} payload 잔액 객체를 인자로 받습니다.
+   */
   addChangetoWallet(payload) {
     return {
       ten: this.state.ten + payload.ten,
