@@ -1,4 +1,6 @@
-# 웹 자판기
+# 웹 자판기 
+
+## [데모 페이지](https://sungikchoi.com/vending-machine/)
 
 ![screenshot](https://user-images.githubusercontent.com/58209009/76308550-ee55cf80-62c2-11ea-81cd-d8db2ca9ad83.png)
 
