@@ -1,7 +1,5 @@
 # 웹 자판기 
 
-## [데모 페이지](https://codesquad-memeber-2020.github.io/vm-5/)
-
 ### 스크린샷
 
 ![screenshot](https://user-images.githubusercontent.com/58209009/77041909-a31e7980-69b2-11ea-823a-37ee04dba4d5.png)
